@@ -21,7 +21,7 @@ func _ready():
 	static_body.add_child(collision_shape)
 
 	var circle = Circle.new()
-	circle.color = Color.PURPLE
+	circle.color = GameColor.TOWER_RANGE
 	circle.color.a = 0.3
 	circle.visible = false
 	parent.add_child(circle)

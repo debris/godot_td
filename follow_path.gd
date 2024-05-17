@@ -18,8 +18,9 @@ func _process(delta):
 
 	if path.size() > path_index:
 		var parent = get_parent()
-		parent.position = parent.position.move_toward(path[path_index], delta * speed)
-		if parent.position.is_equal_approx(path[path_index]):
+		var path_to_position = path[path_index] * Vector2(32.0, 32.0)
+		parent.position = parent.position.move_toward(path_to_position, delta * speed)
+		if parent.position.is_equal_approx(path_to_position):
 			path_index += 1
 
 			# check if we reached the end of the patH

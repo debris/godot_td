@@ -12,6 +12,11 @@ class_name Square
 		color = value
 		queue_redraw()
 
+@export var border_color := Color.BLACK:
+	set(value):
+		border_color = value
+		queue_redraw()
+
 func _draw():
 	draw_rect(Rect2(-size / 2, size), color)
-	draw_rect(Rect2(-size / 2, size), Color.BLACK, false)
+	draw_rect(Rect2(-size / 2, size), border_color, false)

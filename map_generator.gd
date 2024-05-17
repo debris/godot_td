@@ -8,13 +8,11 @@ enum Part {
 } 
 
 static func generate_map(
-	start_position = Vector2(0.0, 0.0),
-	square_size = Vector2(32.0, 32.0),
 	road_len = 30
 ) -> PackedVector2Array:
 	var road_parts = [Part.STRAIGHT, Part.LEFT, Part.RIGHT]
 	var road_direction = Vector2(1, 0)
-	var current_position = start_position
+	var current_position = Vector2(0, 0)
 	var path = PackedVector2Array()
 
 	for i in road_len:
@@ -26,7 +24,7 @@ static func generate_map(
 			random_part = road_parts.pick_random()
 
 		# update current position
-		current_position += square_size * road_direction
+		current_position += road_direction
 		path.push_back(current_position)
 
 		# update the direction

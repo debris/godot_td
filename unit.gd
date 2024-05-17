@@ -13,7 +13,8 @@ var follow_path = FollowPath.new()
 
 func _ready():
 	var square = Square.new()
-	square.color = Color.RED
+	square.color = GameColor.ENEMY
+	square.border_color = GameColor.BORDER
 	add_child(square)
 
 	follow_path.path = path
