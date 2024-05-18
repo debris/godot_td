@@ -1,9 +1,15 @@
 extends Node2D
 class_name AddTower
 
-var tower = Tower.new()
+@export var tower_constructor: Callable
+
+var tower: Node2D = null
+
+func _init(tc):
+	tower_constructor = tc
 
 func _ready():
+	tower = tower_constructor.call()
 	get_parent().add_child(tower)
 
 func _process(_delta):
@@ -23,10 +29,11 @@ func _process(_delta):
 			tower.active = true
 			get_parent().save_square(tower, index)
 			var tower_position = tower.position
-			tower = Tower.new()
+			tower = tower_constructor.call()
 			tower.position = tower_position
 			get_parent().add_child(tower)
 	
 	if Input.is_action_just_pressed("right_click"):
 		tower.queue_free()
 		queue_free()
+	

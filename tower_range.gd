@@ -1,19 +1,29 @@
 @tool
 extends Node
-class_name CircleRange
+class_name TowerRange
 
 signal closest_target(pos: Vector2)
 
+@export var size := Vector2(32.0, 32.0)
+@export var shape: Shape2D:
+	set(value):
+		shape = value
+		range_shape.shape = shape
+		visual_shape.shape = shape
+		
+@export var shape_position := Vector2.ZERO:
+	set(value):
+		shape_position = value
+		range_shape.position = shape_position
+		visual_shape.position = shape_position
+
 var enemies = {}
+var hovered = false
+var range_shape = CollisionShape2D.new()
+var visual_shape = VisualShape.new()
 
 func _ready():
 	var parent = get_parent()
-
-	if !"radius" in parent:
-		print_debug("cannot display range, missing parent radius")
-
-	if !"size" in parent:
-		print_debug("cannot display range, missing parent size")
 
 	var static_body = StaticBody2D.new()
 	static_body.input_pickable = true
@@ -23,37 +33,36 @@ func _ready():
 
 	var collision_shape = CollisionShape2D.new()
 	collision_shape.shape = RectangleShape2D.new()
-	collision_shape.shape.size = parent.size
+	collision_shape.shape.size = size
 	static_body.add_child(collision_shape)
-
-	var circle = Circle.new()
-	circle.color = GameColor.TOWER_RANGE
-	circle.color.a = 0.3
-	circle.visible = false
-	circle.radius = parent.radius
-	parent.add_child(circle)
 
 	var area = Area2D.new()
 	area.collision_layer = 0
 	area.collision_mask = 0
-	# TODO: 2 should be a constant
-	area.set_collision_mask_value(2, true)
+	area.set_collision_mask_value(GameLayer.ENEMY, true)
 	parent.add_child(area)
 
-	var range_shape = CollisionShape2D.new()
-	range_shape.shape = CircleShape2D.new()
-	# TODO: update if it changes with parent
-	range_shape.shape.radius = parent.radius
+	range_shape.shape = shape
+	range_shape.position = shape_position
 	area.add_child(range_shape)
+
+	var color = GameColor.TOWER_RANGE
+	color.a = 0.3
+
+	visual_shape.color = color
+	visual_shape.shape = shape
+	visual_shape.position = shape_position
+	parent.add_child(visual_shape)
 
 	static_body.mouse_entered.connect(func():
 		print_debug("hover tower")
-		circle.radius = parent.radius
-		circle.visible = true
+		visual_shape.visible = true
+		hovered = true
 	)
 
 	static_body.mouse_exited.connect(func():
-		circle.visible = false
+		visual_shape.visible = false
+		hovered = false
 	)
 
 	area.area_entered.connect(func(body):
@@ -67,6 +76,13 @@ func _ready():
 	)
 
 func _process(_delta):
+	if hovered:
+		if Input.is_action_just_pressed("rotate_left"):
+			get_parent().rotate_left()
+
+		if Input.is_action_just_pressed("rotate_right"):
+			get_parent().rotate_right()
+
 	if Pause.paused:
 		return
 

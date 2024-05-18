@@ -47,9 +47,6 @@ func _on_start_pressed():
 		)
 	)
 
-func _on_tower_pressed():
-	add_child(AddTower.new())
-
 func add_square(node: Node2D, index: Vector2):
 	ground.add_child(node)
 	node.position = Utils.index_to_position(index)
@@ -73,3 +70,13 @@ func remove_square(index: Vector2):
 
 func _on_remove_pressed():
 	add_child(DeleteTower.new())
+
+func _on_tower_pressed():
+	# add delay so 'AddTower' doesnt process the same button press
+	await get_tree().create_timer(0.05).timeout
+	add_child(AddTower.new(Tower.new))
+
+func _on_tower_2_pressed():
+	# add delay so 'AddTower' doesnt process the same button press
+	await get_tree().create_timer(0.05).timeout
+	add_child(AddTower.new(TowerT2.new))

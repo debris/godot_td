@@ -7,8 +7,8 @@ class_name Tower
 		radius = value
 
 var active = false
-var size = Vector2(32.0, 32.0)
 var reloading = false
+var size = Vector2(32.0, 32.0)
 
 func _ready():
 	var square = Square.new()
@@ -17,8 +17,15 @@ func _ready():
 	square.border_color = GameColor.BORDER
 	add_child(square)
 
-	var range_on_hover = CircleRange.new()
-	add_child(range_on_hover)
+	var circle = Circle.new()
+	circle.radius = 8.0
+	circle.color = GameColor.TOWER_RIFLE
+	add_child(circle)
+
+	var tower_range = TowerRange.new()
+	tower_range.shape = CircleShape2D.new()
+	tower_range.shape.radius = radius
+	add_child(tower_range)
 
 	var line = Line2D.new()
 	line.add_point(Vector2.ZERO)
@@ -27,7 +34,7 @@ func _ready():
 	line.width = 6.0
 	add_child(line)
 
-	range_on_hover.closest_target.connect(func(pos: Vector2):
+	tower_range.closest_target.connect(func(pos: Vector2):
 		line.clear_points()	
 		line.add_point(Vector2.ZERO)
 		var angle = get_angle_to(pos)
@@ -56,3 +63,9 @@ func _ready():
 
 			reloading = false
 	)
+
+func rotate_left():
+	pass
+
+func rotate_right():
+	pass
