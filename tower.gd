@@ -6,7 +6,9 @@ class_name Tower
 	set(value):
 		radius = value
 
+var active = false
 var size = Vector2(32.0, 32.0)
+var shooting = false
 
 func _ready():
 	var square = Square.new()
@@ -30,4 +32,17 @@ func _ready():
 		line.add_point(Vector2.ZERO)
 		var angle = get_angle_to(pos)
 		line.add_point(Vector2(24.0, 0.0).rotated(angle))
+
+		if !active:
+			return
+
+		if !shooting:
+			shooting = true
+			# TODO: save fire rate
+			var bullet = Bullet.new()
+			bullet.position = position + Vector2(24.0, 0.0).rotated(angle)
+			bullet.direction = Vector2.RIGHT.rotated(angle)
+			add_sibling(bullet)
+			await get_tree().create_timer(0.5).timeout
+			shooting = false
 	)

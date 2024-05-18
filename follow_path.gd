@@ -8,7 +8,7 @@ signal finished
 		path = value
 		path_index = 0
 
-@export var speed := 256.0
+@export var speed := 48.0
 
 var path_index := 0
 

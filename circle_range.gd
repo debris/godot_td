@@ -68,5 +68,8 @@ func _ready():
 	)
 
 func _process(_delta):
+	if Pause.paused:
+		return
+
 	if last_enemy != null:
 		enemy_in_range.emit(last_enemy.global_position)

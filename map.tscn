@@ -32,6 +32,7 @@ offset_left = 16.0
 offset_top = 96.0
 offset_right = 64.0
 offset_bottom = 128.0
+focus_mode = 0
 text = "Start"
 
 [node name="Tower" type="Button" parent="Menu"]
@@ -39,6 +40,7 @@ offset_left = 16.0
 offset_top = 136.0
 offset_right = 73.0
 offset_bottom = 168.0
+focus_mode = 0
 text = "Tower"
 
 [node name="Remove" type="Button" parent="Menu"]
@@ -46,6 +48,7 @@ offset_left = 16.0
 offset_top = 176.0
 offset_right = 87.0
 offset_bottom = 207.0
+focus_mode = 0
 text = "Remove"
 
 [connection signal="pressed" from="Menu/Start" to="." method="_on_start_pressed"]

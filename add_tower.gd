@@ -20,6 +20,7 @@ func _process(_delta):
 		tower.modulate = Color.WHITE
 		if Input.is_action_just_pressed("left_click"):
 			print_debug("place tower")
+			tower.active = true
 			get_parent().save_square(tower, index)
 			var tower_position = tower.position
 			tower = Tower.new()

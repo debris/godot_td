@@ -27,11 +27,19 @@ func _ready():
 	var area = Area2D.new()
 	area.collision_layer = 0
 	area.collision_mask = 0
-	# TODO: make 2 const somewhere
-	area.set_collision_layer_value(2, true)
+	area.set_collision_layer_value(GameLayer.ENEMY, true)
+	area.set_collision_mask_value(GameLayer.BULLET, true)
 	add_child(area)
 
 	var collision_shape = CollisionShape2D.new()
 	collision_shape.shape = RectangleShape2D.new()
 	collision_shape.shape.size = Vector2(32.0, 32.0)
 	area.add_child(collision_shape)
+
+	area.area_entered.connect(func(body):
+		# hit by the bullet
+		if body is DamageArea:
+			print_debug("taking " + str(body.damage) + " damage")
+			# TODO: implement damage
+		queue_free()	
+	)
