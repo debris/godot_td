@@ -9,6 +9,8 @@ signal goal_reached
 		path = value
 		follow_path.path = path
 
+@export var health := Health.new()
+
 var follow_path = FollowPath.new()
 
 func _ready():
@@ -43,6 +45,19 @@ func _ready():
 		# hit by the bullet
 		if body is DamageArea:
 			print_debug("taking " + str(body.damage) + " damage")
-			# TODO: implement damage
-		queue_free()	
+			health.current -= body.damage
+	)
+
+	health.death.connect(func():
+		print_debug("killed")
+		queue_free()
+	)
+
+	var bar = Bar.new()
+	bar.position = Vector2(0.0, 12.0)
+	bar.value = 0.0
+	add_child(bar)
+
+	health.changed.connect(func():
+		bar.value = health.percent()
 	)

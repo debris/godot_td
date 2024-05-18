@@ -2,7 +2,7 @@
 extends Node2D
 class_name Tower
 
-@export var radius:= 64.0:
+@export var radius:= 128.0:
 	set(value):
 		radius = value
 
