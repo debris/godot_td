@@ -27,7 +27,7 @@ func _ready():
 	line.width = 6.0
 	add_child(line)
 
-	range_on_hover.enemy_in_range.connect(func(pos: Vector2):
+	range_on_hover.closest_target.connect(func(pos: Vector2):
 		line.clear_points()	
 		line.add_point(Vector2.ZERO)
 		var angle = get_angle_to(pos)
@@ -40,7 +40,8 @@ func _ready():
 			
 			var bullet = Bullet.new()
 			bullet.position = position + Vector2(24.0, 0.0).rotated(angle)
-			bullet.direction = Vector2.RIGHT.rotated(angle)
+			bullet.direction = Vector2(24.0, 0.0).rotated(angle)
+			bullet.distance_left = radius - 24.0
 			add_sibling(bullet)
 
 			reloading = true

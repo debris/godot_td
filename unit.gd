@@ -22,6 +22,13 @@ func _ready():
 	square.border_color = GameColor.BORDER
 	add_child(square)
 
+	var head = Square.new()
+	head.size = Vector2(8.0, 6.0)
+	head.position = Vector2(0.0, -8.0)
+	head.color = GameColor.ENEMY
+	head.border_color = GameColor.BORDER
+	square.add_child(head)
+
 	follow_path.path = path
 	add_child(follow_path)
 	follow_path.finished.connect(func():

@@ -2,9 +2,9 @@
 extends Node
 class_name CircleRange
 
-signal enemy_in_range(pos: Vector2)
+signal closest_target(pos: Vector2)
 
-var last_enemy = null
+var enemies = {}
 
 func _ready():
 	var parent = get_parent()
@@ -57,19 +57,26 @@ func _ready():
 	)
 
 	area.area_entered.connect(func(body):
-		last_enemy = body
+		enemies[body] = true
 		print_debug("enemy in range")
 	)
 
 	area.area_exited.connect(func(body):
 		print_debug("enemy exited")	
-		if body == last_enemy:
-			last_enemy = null
+		enemies.erase(body)
 	)
 
 func _process(_delta):
 	if Pause.paused:
 		return
 
-	if last_enemy != null:
-		enemy_in_range.emit(last_enemy.global_position)
+	var closest_distance = 0
+	var closest_enemy = null
+	for enemy in enemies:
+		var distance = get_parent().global_position.distance_to(enemy.global_position)
+		if closest_enemy == null || distance < closest_distance:
+			closest_enemy = enemy
+			closest_distance = distance
+
+	if closest_enemy != null:
+		closest_target.emit(closest_enemy.global_position)

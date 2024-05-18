@@ -3,6 +3,8 @@ class_name Bullet
 
 @export var direction := Vector2.ZERO
 @export var speed := 512.0
+# should be based on radius
+@export var distance_left := 100.0
 
 func _ready():
 	var area = DamageArea.new()
@@ -28,6 +30,9 @@ func _process(delta):
 		return
 	
 	position = position.move_toward(direction * Vector2(1000.0, 1000.0), speed * delta)
+	distance_left -= speed * delta
+	if distance_left <= 0.0:
+		queue_free()
 
 func _draw():
 	draw_circle(Vector2.ZERO, 2, Color.RED)
