@@ -2,7 +2,7 @@ extends Node2D
 class_name Bullet
 
 @export var direction := Vector2.ZERO
-@export var speed := 128.0
+@export var speed := 512.0
 
 func _ready():
 	var area = DamageArea.new()

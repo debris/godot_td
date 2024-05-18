@@ -12,7 +12,10 @@ signal goal_reached
 var follow_path = FollowPath.new()
 
 func _ready():
+	var size = Vector2(16.0, 16.0)
+
 	var square = Square.new()
+	square.size = size
 	square.color = GameColor.ENEMY
 	square.border_color = GameColor.BORDER
 	add_child(square)
@@ -33,7 +36,7 @@ func _ready():
 
 	var collision_shape = CollisionShape2D.new()
 	collision_shape.shape = RectangleShape2D.new()
-	collision_shape.shape.size = Vector2(32.0, 32.0)
+	collision_shape.shape.size = size
 	area.add_child(collision_shape)
 
 	area.area_entered.connect(func(body):

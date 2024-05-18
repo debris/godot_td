@@ -8,7 +8,7 @@ class_name Tower
 
 var active = false
 var size = Vector2(32.0, 32.0)
-var shooting = false
+var reloading = false
 
 func _ready():
 	var square = Square.new()
@@ -36,13 +36,22 @@ func _ready():
 		if !active:
 			return
 
-		if !shooting:
-			shooting = true
-			# TODO: save fire rate
+		if !reloading:
+			
 			var bullet = Bullet.new()
 			bullet.position = position + Vector2(24.0, 0.0).rotated(angle)
 			bullet.direction = Vector2.RIGHT.rotated(angle)
 			add_sibling(bullet)
-			await get_tree().create_timer(0.5).timeout
-			shooting = false
+
+			reloading = true
+
+			var loadbar = LoadBar.new()
+			loadbar.position = Vector2(0, 12.0)
+			# TODO: that's the rate of fire
+			loadbar.time = 1.0
+			add_child(loadbar)
+			await loadbar.finished
+			loadbar.queue_free()
+
+			reloading = false
 	)
