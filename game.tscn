@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2ikrtj6tb1ll"]
+
+[ext_resource type="Script" path="res://background.gd" id="1_fqr3w"]
+[ext_resource type="PackedScene" uid="uid://dqwsdri0irtsh" path="res://map.tscn" id="2_cr1ny"]
+
+[node name="Game" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="Node2D" parent="CanvasLayer"]
+position = Vector2(576, 324)
+script = ExtResource("1_fqr3w")
+size = Vector2(1152, 648)
+
+[node name="Map" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Node2D" parent="Map" instance=ExtResource("2_cr1ny")]

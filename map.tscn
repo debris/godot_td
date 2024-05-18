@@ -1,80 +1,53 @@
-[gd_scene load_steps=7 format=3 uid="uid://bahibmwhas5ie"]
+[gd_scene load_steps=3 format=3 uid="uid://dqwsdri0irtsh"]
 
 [ext_resource type="Script" path="res://map.gd" id="1_n548p"]
 [ext_resource type="Script" path="res://camera_move.gd" id="2_7pmbh"]
-[ext_resource type="Script" path="res://square.gd" id="2_37ey4"]
-[ext_resource type="Script" path="res://background.gd" id="2_e6pno"]
-[ext_resource type="Script" path="res://follow_path.gd" id="4_wf2kh"]
-[ext_resource type="Script" path="res://circle.gd" id="5_hl4ne"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_n548p")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Ground" type="Node2D" parent="."]
 
-[node name="Score" type="Label" parent="CanvasLayer"]
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CameraMove" type="Node" parent="Camera2D"]
+script = ExtResource("2_7pmbh")
+
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="Menu"]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "score"
 
-[node name="ToEmit" type="Label" parent="CanvasLayer"]
+[node name="ToEmit" type="Label" parent="Menu"]
 offset_top = 23.0
 offset_right = 42.0
 offset_bottom = 46.0
 text = "to emit:
 "
 
-[node name="Start" type="Button" parent="CanvasLayer"]
+[node name="Start" type="Button" parent="Menu"]
 offset_left = 16.0
 offset_top = 96.0
 offset_right = 64.0
 offset_bottom = 128.0
 text = "Start"
 
-[node name="Tower" type="Button" parent="CanvasLayer"]
+[node name="Tower" type="Button" parent="Menu"]
 offset_left = 16.0
 offset_top = 136.0
 offset_right = 73.0
 offset_bottom = 168.0
 text = "Tower"
 
-[node name="Remove" type="Button" parent="CanvasLayer"]
+[node name="Remove" type="Button" parent="Menu"]
 offset_left = 16.0
 offset_top = 176.0
 offset_right = 87.0
 offset_bottom = 207.0
 text = "Remove"
 
-[node name="Ground" type="Node2D" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Background" type="Node2D" parent="Camera2D"]
-z_index = -1
-script = ExtResource("2_e6pno")
-size = Vector2(1152, 648)
-
-[node name="CameraMove" type="Node" parent="Camera2D"]
-script = ExtResource("2_7pmbh")
-
-[node name="Unit" type="Node2D" parent="."]
-visible = false
-position = Vector2(40, 24)
-script = ExtResource("2_37ey4")
-color = Color(0.384314, 1, 1, 1)
-
-[node name="FollowPath" type="Node" parent="Unit"]
-script = ExtResource("4_wf2kh")
-
-[node name="Circle" type="Node2D" parent="."]
-visible = false
-position = Vector2(224, 16)
-script = ExtResource("5_hl4ne")
-radius = 200.0
-color = Color(1, 1, 0.341176, 0.470588)
-
-[node name="Map" type="CanvasLayer" parent="."]
-
-[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tower" to="." method="_on_tower_pressed"]
-[connection signal="pressed" from="CanvasLayer/Remove" to="." method="_on_remove_pressed"]
+[connection signal="pressed" from="Menu/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/Tower" to="." method="_on_tower_pressed"]
+[connection signal="pressed" from="Menu/Remove" to="." method="_on_remove_pressed"]

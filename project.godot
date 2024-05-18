@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PowerDefense"
-run/main_scene="res://map.tscn"
+run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,7 @@ Utils="*res://utils.gd"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [input]

@@ -6,6 +6,7 @@ class_name CameraMove
 func _process(delta):
 	var parent = get_parent()
 	if Input.is_action_pressed("ui_up"):
+		print_debug("upppp")
 		parent.position += Vector2.UP * delta * speed
 	if Input.is_action_pressed("ui_down"):
 		parent.position += Vector2.DOWN * delta * speed
