@@ -67,7 +67,6 @@ func remove_square(index: Vector2):
 			square_by_index[index].queue_free()
 			square_by_index.erase(index)
 
-
 func _on_remove_pressed():
 	add_child(DeleteTower.new())
 

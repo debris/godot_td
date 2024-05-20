@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2ikrtj6tb1ll"]
+[gd_scene load_steps=5 format=3 uid="uid://d2ikrtj6tb1ll"]
 
 [ext_resource type="Script" path="res://background.gd" id="1_fqr3w"]
-[ext_resource type="PackedScene" uid="uid://dqwsdri0irtsh" path="res://map.tscn" id="2_cr1ny"]
+[ext_resource type="PackedScene" uid="uid://bx18yki0ouqgv" path="res://levels/0.tscn" id="2_x3rvw"]
+[ext_resource type="Script" path="res://camera_move.gd" id="3_qopqs"]
+[ext_resource type="Script" path="res://camera_center.gd" id="4_yw2ft"]
 
 [node name="Game" type="Node2D"]
 
@@ -15,4 +17,14 @@ size = Vector2(1152, 648)
 [node name="Map" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="Node2D" parent="Map" instance=ExtResource("2_cr1ny")]
+[node name="0" parent="Map" instance=ExtResource("2_x3rvw")]
+
+[node name="Camera2D" type="Camera2D" parent="Map"]
+position = Vector2(576, 324)
+
+[node name="CameraMove" type="Node" parent="Map/Camera2D"]
+script = ExtResource("3_qopqs")
+
+[node name="CameraCenter" type="Node" parent="Map/Camera2D" node_paths=PackedStringArray("level")]
+script = ExtResource("4_yw2ft")
+level = NodePath("../../0")

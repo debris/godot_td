@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://buv1yqbkffnj7"]
+
+[ext_resource type="Script" path="res://square.gd" id="1_2c4jb"]
+
+[node name="Start" type="Node2D"]
+script = ExtResource("1_2c4jb")
+color = Color(0, 0.470588, 0, 1)

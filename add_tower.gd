@@ -12,10 +12,12 @@ func _ready():
 	tower = tower_constructor.call()
 	get_parent().add_child(tower)
 
+	var mouse_position = get_global_mouse_position()
+	var index = Utils.position_to_index(mouse_position)
+	tower.position = Utils.index_to_position(index)
+
 func _process(_delta):
 	var mouse_position = get_global_mouse_position()
-
-	# normalize position so it's always a square
 	var index = Utils.position_to_index(mouse_position)
 	tower.position = Utils.index_to_position(index)
 

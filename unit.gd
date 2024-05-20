@@ -2,18 +2,26 @@
 extends Node2D
 class_name Unit
 
+const SPEED := 50.0
+
 signal goal_reached
 
-@export var path: PackedVector2Array:
-	set(value):
-		path = value
-		follow_path.path = path
-
 @export var health := Health.new()
+@export var target_position: Vector2:
+	set(value):
+		target_position = value
+		navigation_agent.target_position = target_position
 
-var follow_path = FollowPath.new()
+var navigation_agent = NavigationAgent2D.new()
 
 func _ready():
+	navigation_agent.path_desired_distance = 8.0
+	navigation_agent.navigation_finished.connect(func():
+		print_debug("unit escaped")
+		goal_reached.emit()
+	)
+	add_child(navigation_agent)
+
 	var size = Vector2(16.0, 16.0)
 
 	var square = Square.new()
@@ -28,13 +36,6 @@ func _ready():
 	head.color = GameColor.ENEMY
 	head.border_color = GameColor.BORDER
 	square.add_child(head)
-
-	follow_path.path = path
-	add_child(follow_path)
-	follow_path.finished.connect(func():
-		goal_reached.emit()
-		queue_free()
-	)
 
 	var area = Area2D.new()
 	area.collision_layer = 0
@@ -68,3 +69,10 @@ func _ready():
 	health.changed.connect(func():
 		bar.value = health.percent()
 	)
+
+func _process(delta):
+	if Pause.paused:
+		return
+
+	var next_position = navigation_agent.get_next_path_position()
+	position = position.move_toward(next_position, delta * SPEED)
