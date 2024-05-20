@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2ikrtj6tb1ll"]
+[gd_scene load_steps=6 format=3 uid="uid://d2ikrtj6tb1ll"]
 
 [ext_resource type="Script" path="res://background.gd" id="1_fqr3w"]
 [ext_resource type="PackedScene" uid="uid://bx18yki0ouqgv" path="res://levels/0.tscn" id="2_x3rvw"]
 [ext_resource type="Script" path="res://camera_move.gd" id="3_qopqs"]
 [ext_resource type="Script" path="res://camera_center.gd" id="4_yw2ft"]
+[ext_resource type="PackedScene" uid="uid://ces6c8kd16kom" path="res://menu.tscn" id="5_wn763"]
 
 [node name="Game" type="Node2D"]
 
@@ -28,3 +29,11 @@ script = ExtResource("3_qopqs")
 [node name="CameraCenter" type="Node" parent="Map/Camera2D" node_paths=PackedStringArray("level")]
 script = ExtResource("4_yw2ft")
 level = NodePath("../../0")
+
+[node name="Menu" parent="Map" instance=ExtResource("5_wn763")]
+
+[connection signal="add_tower" from="Map/Menu" to="Map/0" method="_on_menu_add_tower"]
+[connection signal="add_tower2" from="Map/Menu" to="Map/0" method="_on_menu_add_tower_2"]
+[connection signal="recenter" from="Map/Menu" to="Map/Camera2D/CameraCenter" method="recenter"]
+[connection signal="remove" from="Map/Menu" to="Map/0" method="_on_menu_remove"]
+[connection signal="start" from="Map/Menu" to="Map/0" method="spawn_unit"]

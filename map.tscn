@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqwsdri0irtsh"]
+[gd_scene load_steps=4 format=3 uid="uid://dqwsdri0irtsh"]
 
 [ext_resource type="Script" path="res://map.gd" id="1_n548p"]
 [ext_resource type="Script" path="res://camera_move.gd" id="2_7pmbh"]
+[ext_resource type="PackedScene" uid="uid://ces6c8kd16kom" path="res://menu.tscn" id="3_y3v2j"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_n548p")
@@ -13,53 +14,4 @@ script = ExtResource("1_n548p")
 [node name="CameraMove" type="Node" parent="Camera2D"]
 script = ExtResource("2_7pmbh")
 
-[node name="Menu" type="CanvasLayer" parent="."]
-
-[node name="Score" type="Label" parent="Menu"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "score"
-
-[node name="ToEmit" type="Label" parent="Menu"]
-offset_top = 23.0
-offset_right = 42.0
-offset_bottom = 46.0
-text = "to emit:
-"
-
-[node name="Start" type="Button" parent="Menu"]
-offset_left = 16.0
-offset_top = 96.0
-offset_right = 64.0
-offset_bottom = 128.0
-focus_mode = 0
-text = "Start"
-
-[node name="Tower" type="Button" parent="Menu"]
-offset_left = 16.0
-offset_top = 136.0
-offset_right = 73.0
-offset_bottom = 168.0
-focus_mode = 0
-text = "Tower"
-
-[node name="Tower2" type="Button" parent="Menu"]
-offset_left = 16.0
-offset_top = 176.0
-offset_right = 73.0
-offset_bottom = 208.0
-focus_mode = 0
-text = "Tower2"
-
-[node name="Remove" type="Button" parent="Menu"]
-offset_left = 16.0
-offset_top = 216.0
-offset_right = 87.0
-offset_bottom = 247.0
-focus_mode = 0
-text = "Remove"
-
-[connection signal="pressed" from="Menu/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Menu/Tower" to="." method="_on_tower_pressed"]
-[connection signal="pressed" from="Menu/Tower2" to="." method="_on_tower_2_pressed"]
-[connection signal="pressed" from="Menu/Remove" to="." method="_on_remove_pressed"]
+[node name="Menu" parent="." instance=ExtResource("3_y3v2j")]

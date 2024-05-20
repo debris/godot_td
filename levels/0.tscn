@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bx18yki0ouqgv"]
+[gd_scene load_steps=11 format=3 uid="uid://bx18yki0ouqgv"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_u7ru1"]
 [ext_resource type="PackedScene" uid="uid://bf5nocw5awdce" path="res://pathsquare.tscn" id="1_xupe3"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://fvy4lubo2vp0" path="res://slots/extra_range.tscn" id="3_s6v6j"]
 [ext_resource type="PackedScene" uid="uid://dqmi5piellnn6" path="res://end.tscn" id="4_lqfw5"]
 [ext_resource type="PackedScene" uid="uid://buv1yqbkffnj7" path="res://start.tscn" id="5_4xxgm"]
+[ext_resource type="PackedScene" uid="uid://ep04hkdtn473" path="res://tower.tscn" id="7_lago8"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_cdiqi"]
 scenes/1/scene = ExtResource("1_xupe3")
@@ -13,6 +14,7 @@ scenes/2/scene = ExtResource("2_52fq7")
 scenes/3/scene = ExtResource("3_s6v6j")
 scenes/4/scene = ExtResource("4_lqfw5")
 scenes/5/scene = ExtResource("5_4xxgm")
+scenes/6/scene = ExtResource("7_lago8")
 
 [sub_resource type="TileSet" id="TileSet_or4lg"]
 tile_size = Vector2i(32, 32)
@@ -39,6 +41,10 @@ layer_2/name = "start"
 layer_2/tile_data = PackedInt32Array(262146, 0, 327680, 196610, 0, 327680)
 layer_3/name = "end"
 layer_3/tile_data = PackedInt32Array(262172, 0, 262144, 196636, 0, 262144)
+layer_4/name = "towers"
+layer_4/tile_data = PackedInt32Array()
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_dqvft")
+
+[node name="Towers" type="Node2D" parent="."]

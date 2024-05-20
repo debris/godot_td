@@ -1,4 +1,5 @@
 ## Drawing of Shape2D
+@tool
 extends Node2D
 class_name VisualShape
 

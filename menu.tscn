@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://ces6c8kd16kom"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_v7074"]
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_v7074")
+
+[node name="Score" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "score"
+
+[node name="ToEmit" type="Label" parent="."]
+offset_top = 23.0
+offset_right = 42.0
+offset_bottom = 46.0
+text = "to emit:
+"
+
+[node name="Start" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 96.0
+offset_right = 64.0
+offset_bottom = 128.0
+focus_mode = 0
+text = "Start"
+
+[node name="Tower" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 136.0
+offset_right = 73.0
+offset_bottom = 168.0
+focus_mode = 0
+text = "Tower"
+
+[node name="Tower2" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 176.0
+offset_right = 73.0
+offset_bottom = 208.0
+focus_mode = 0
+text = "Tower2"
+
+[node name="Remove" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 216.0
+offset_right = 87.0
+offset_bottom = 247.0
+focus_mode = 0
+text = "Remove"
+
+[node name="Recenter" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 256.0
+offset_right = 87.0
+offset_bottom = 287.0
+focus_mode = 0
+text = "Recenter"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Tower" to="." method="_on_tower_pressed"]
+[connection signal="pressed" from="Tower2" to="." method="_on_tower_2_pressed"]
+[connection signal="pressed" from="Remove" to="." method="_on_remove_pressed"]
+[connection signal="pressed" from="Recenter" to="." method="_on_recenter_pressed"]
