@@ -5,10 +5,13 @@ class_name Tower
 @export var radius:= 128.0:
 	set(value):
 		radius = value
+		if tower_range.shape is CircleShape2D:
+			tower_range.shape.radius = radius
 
 var active = false
 var reloading = false
 var size = Vector2(32.0, 32.0)
+var tower_range = TowerRange.new()
 
 func _ready():
 	var square = Square.new()
@@ -22,7 +25,6 @@ func _ready():
 	circle.color = GameColor.TOWER_RIFLE
 	add_child(circle)
 
-	var tower_range = TowerRange.new()
 	tower_range.shape = CircleShape2D.new()
 	tower_range.shape.radius = radius
 	add_child(tower_range)
@@ -69,3 +71,6 @@ func rotate_left():
 
 func rotate_right():
 	pass
+
+func reset_state():
+	radius = 128.0

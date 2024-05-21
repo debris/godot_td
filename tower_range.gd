@@ -18,6 +18,7 @@ signal closest_target(pos: Vector2)
 		visual_shape.position = shape_position
 
 var enemies = {}
+var buffs = {}
 var hovered = false
 var range_shape = CollisionShape2D.new()
 var visual_shape = VisualShape.new()
@@ -35,6 +36,18 @@ func _ready():
 	collision_shape.shape = RectangleShape2D.new()
 	collision_shape.shape.size = size
 	static_body.add_child(collision_shape)
+
+	var body_area = Area2D.new()
+	body_area.collision_layer = 0
+	body_area.collision_mask = 0
+	body_area.set_collision_layer_value(GameLayer.TOWER, true)
+	body_area.set_collision_mask_value(GameLayer.BUFF, true)
+	parent.add_child(body_area)
+
+	var body_collision = CollisionShape2D.new()
+	body_collision.shape = RectangleShape2D.new()
+	body_collision.shape.size = size
+	body_area.add_child(body_collision)
 
 	var area = Area2D.new()
 	area.collision_layer = 0
@@ -54,8 +67,19 @@ func _ready():
 	visual_shape.position = shape_position
 	parent.add_child(visual_shape)
 
+	body_area.area_entered.connect(func(buff):
+		buffs[buff] = null	
+		buff.add_buff_to(parent)
+	)
+
+	body_area.area_exited.connect(func(buff):
+		buffs.erase(buff)
+		parent.reset_state()
+		for b in buffs:
+			b.add_buff_to(parent)
+	)
+
 	static_body.mouse_entered.connect(func():
-		print_debug("hover tower")
 		visual_shape.visible = true
 		hovered = true
 	)

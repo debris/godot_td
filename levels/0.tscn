@@ -44,5 +44,3 @@ layer_4/tile_data = PackedInt32Array()
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_dqvft")
-
-[node name="Towers" type="Node2D" parent="."]

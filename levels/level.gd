@@ -7,7 +7,6 @@ const START_LAYER: int = 2
 const END_LAYER: int = 3
 
 @onready var tilemap: TileMap = $TileMap
-@onready var towers: Node2D = $Towers
 
 var start_cells = null
 var end_cells = null
@@ -25,7 +24,6 @@ func _ready():
 
 	start_cells = tilemap.get_used_cells(START_LAYER)
 	end_cells = tilemap.get_used_cells(END_LAYER)
-	spawn_unit()
 
 func normalize_position(pos: Vector2) -> Vector2:
 	var index = tilemap.local_to_map(pos)
@@ -56,8 +54,8 @@ func get_center() -> Vector2:
 
 func spawn_unit():
 	var unit = Unit.new()
-	unit.position = start_cells.pick_random() * Vector2i(32, 32) + Vector2i(16, 16)
-	unit.target_position = end_cells.pick_random() * Vector2i(32, 32) + Vector2i(16, 16)
+	unit.position = tilemap.map_to_local(start_cells.pick_random())
+	unit.target_position = tilemap.map_to_local(end_cells.pick_random())
 	add_child(unit)
 	unit.goal_reached.connect(func():
 		unit.queue_free()

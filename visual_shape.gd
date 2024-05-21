@@ -11,6 +11,7 @@ class_name VisualShape
 @export var shape: Shape2D:
 	set(value):
 		shape = value
+		shape.changed.connect(func(): queue_redraw())
 		queue_redraw()
 
 func _draw():
