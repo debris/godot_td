@@ -1,8 +1,8 @@
 @tool
 extends Buff
-class_name BuffRange
+class_name BuffDamage
 
-@export var multiplier := 1.25:
+@export var multiplier := 2:
 	set(value):
 		multiplier = value
 		update_tooltip_text()
@@ -15,8 +15,8 @@ func _ready():
 	add_child(display_square_tooltip)
 
 func update_tooltip_text():
-	display_square_tooltip.text = "RANGE * " + str(multiplier)
+	display_square_tooltip.text = "DAMAGE * " + str(multiplier)
 
 func add_buff_to(tower: Node2D):
-	if "radius" in tower:
-		tower.radius *= multiplier
+	if "damage" in tower:
+		tower.damage *= multiplier

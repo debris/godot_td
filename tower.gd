@@ -2,11 +2,13 @@
 extends Node2D
 class_name Tower
 
-@export var radius:= 128.0:
+@export var radius := 128.0:
 	set(value):
 		radius = value
 		if tower_range.shape is CircleShape2D:
 			tower_range.shape.radius = radius
+
+@export var damage := 3
 
 var active = false
 var reloading = false
@@ -48,6 +50,7 @@ func _ready():
 		if !reloading:
 			
 			var bullet = Bullet.new()
+			bullet.damage = damage
 			bullet.position = position + Vector2(24.0, 0.0).rotated(angle)
 			bullet.direction = Vector2(24.0, 0.0).rotated(angle)
 			bullet.distance_left = radius - 24.0
@@ -74,3 +77,4 @@ func rotate_right():
 
 func reset_state():
 	radius = 128.0
+	damage = 3

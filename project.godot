@@ -68,3 +68,5 @@ rotate_left={
 2d_physics/layer_1="path"
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="bullet"
+2d_physics/layer_4="tower"
+2d_physics/layer_5="buff"

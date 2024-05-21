@@ -9,6 +9,10 @@ class_name TowerT2
 			tower_range.shape.size = Vector2(radius, 32.0)
 		tower_range.shape_position = Vector2(radius / 2 + 16.0, 0.0)
 
+@export var damage := 3:
+	set(value):
+		damage = value
+
 var active = false
 var reloading = false
 
@@ -58,12 +62,14 @@ func _fire_at(_pos: Vector2):
 
 	if !reloading:
 		var bullet = Bullet.new()
+		bullet.damage = damage
 		bullet.position = position + Vector2(24.0, -3.0).rotated(rotation)
 		bullet.direction = Vector2(24.0, 0).rotated(rotation)
 		bullet.distance_left = radius - 24.0
 		add_sibling(bullet)
 
 		var bullet2 = Bullet.new()
+		bullet2.damage = damage
 		bullet2.position = position + Vector2(24.0, 3.0).rotated(rotation)
 		bullet2.direction = Vector2(24.0, 0).rotated(rotation)
 		bullet2.distance_left = radius - 24.0
@@ -83,3 +89,4 @@ func _fire_at(_pos: Vector2):
 
 func reset_state():
 	radius = 256.0
+	damage = 3

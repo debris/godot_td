@@ -11,3 +11,4 @@ color = Color(0.478431, 0.482353, 0.0784314, 1)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("2_gdcoq")
+multiplier = null
