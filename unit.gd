@@ -52,12 +52,10 @@ func _ready():
 	area.area_entered.connect(func(body):
 		# hit by the bullet
 		if body is DamageArea:
-			print_debug("taking " + str(body.damage) + " damage")
 			health.current -= body.damage
 	)
 
 	health.death.connect(func():
-		print_debug("killed")
 		queue_free()
 	)
 

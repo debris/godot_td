@@ -7,16 +7,9 @@ class_name BuffSpeed
 		multiplier = value
 		update_tooltip_text()
 		
-var display_square_tooltip = DisplaySquareTooltip.new()
-
-func _ready():
-	super._ready()
-	update_tooltip_text()
-	add_child(display_square_tooltip)
-
-func update_tooltip_text():
-	display_square_tooltip.text = "SPEED * " + str(multiplier)
-
 func add_buff_to(tower: Node2D):
 	if "speed" in tower:
 		tower.speed *= multiplier
+
+func tooltip_text() -> String:
+	return "SPEED * " + str(multiplier)
