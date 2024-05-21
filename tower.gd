@@ -9,11 +9,17 @@ class_name Tower
 			tower_range.shape.radius = radius
 
 @export var damage := 3
+@export var speed := 1.0
 
 var active = false
 var reloading = false
 var size = Vector2(32.0, 32.0)
 var tower_range = TowerRange.new()
+
+func reset_state():
+	radius = 128.0
+	damage = 3
+	speed = 1.0
 
 func _ready():
 	var square = Square.new()
@@ -61,7 +67,7 @@ func _ready():
 			var loadbar = LoadBar.new()
 			loadbar.position = Vector2(0, 12.0)
 			# TODO: that's the rate of fire
-			loadbar.time = 1.0
+			loadbar.time = speed
 			add_child(loadbar)
 			await loadbar.finished
 			loadbar.queue_free()
@@ -74,7 +80,3 @@ func rotate_left():
 
 func rotate_right():
 	pass
-
-func reset_state():
-	radius = 128.0
-	damage = 3

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8rqhrhqe4kjx"]
+
+[ext_resource type="Script" path="res://square.gd" id="1_520ho"]
+[ext_resource type="Script" path="res://buff_speed.gd" id="2_45rx8"]
+
+[node name="ExtraSpeed" type="Node2D"]
+script = ExtResource("1_520ho")
+color = Color(1, 0.355435, 0.995594, 1)
+
+[node name="BuffSpeed" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_45rx8")

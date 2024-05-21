@@ -9,9 +9,8 @@ class_name TowerT2
 			tower_range.shape.size = Vector2(radius, 32.0)
 		tower_range.shape_position = Vector2(radius / 2 + 16.0, 0.0)
 
-@export var damage := 3:
-	set(value):
-		damage = value
+@export var damage := 3
+@export var speed := 4.0
 
 var active = false
 var reloading = false
@@ -21,6 +20,11 @@ var size = Vector2(32.0, 32.0)
 var line = Line2D.new()
 var line2 = Line2D.new()
 var tower_range = TowerRange.new()
+
+func reset_state():
+	radius = 256.0
+	damage = 3
+	speed = 4.0
 
 func _ready():
 	var square = Square.new()
@@ -80,13 +84,9 @@ func _fire_at(_pos: Vector2):
 		var loadbar = LoadBar.new()
 		loadbar.position = Vector2(0, 12.0)
 		# TODO: that's the rate of fire
-		loadbar.time = 4.0
+		loadbar.time = speed
 		add_child(loadbar)
 		await loadbar.finished
 		loadbar.queue_free()
 
 		reloading = false
-
-func reset_state():
-	radius = 256.0
-	damage = 3
