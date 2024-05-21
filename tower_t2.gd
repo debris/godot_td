@@ -2,6 +2,13 @@
 extends Node2D
 class_name TowerT2
 
+@export var radius := 256.0:
+	set(value):
+		radius = value
+		if tower_range.shape is RectangleShape2D:
+			tower_range.shape.size = Vector2(radius, 32.0)
+		tower_range.shape_position = Vector2(radius / 2 + 16.0, 0.0)
+
 var active = false
 var reloading = false
 
@@ -31,8 +38,8 @@ func _ready():
 	add_child(line2)
 
 	tower_range.shape = RectangleShape2D.new()
-	tower_range.shape.size = Vector2(256.0, 32.0)
-	tower_range.shape_position = Vector2(256.0 / 2 + 16.0, 0.0)
+	tower_range.shape.size = Vector2(radius, 32.0)
+	tower_range.shape_position = Vector2(radius / 2 + 16.0, 0.0)
 	add_child(tower_range)
 
 	tower_range.closest_target.connect(_fire_at)
@@ -53,13 +60,13 @@ func _fire_at(_pos: Vector2):
 		var bullet = Bullet.new()
 		bullet.position = position + Vector2(24.0, -3.0).rotated(rotation)
 		bullet.direction = Vector2(24.0, 0).rotated(rotation)
-		bullet.distance_left = 256.0
+		bullet.distance_left = radius - 24.0
 		add_sibling(bullet)
 
 		var bullet2 = Bullet.new()
 		bullet2.position = position + Vector2(24.0, 3.0).rotated(rotation)
 		bullet2.direction = Vector2(24.0, 0).rotated(rotation)
-		bullet2.distance_left = 256.0
+		bullet2.distance_left = radius - 24.0
 		add_sibling(bullet2)
 		
 		reloading = true
@@ -73,3 +80,6 @@ func _fire_at(_pos: Vector2):
 		loadbar.queue_free()
 
 		reloading = false
+
+func reset_state():
+	radius = 256.0
