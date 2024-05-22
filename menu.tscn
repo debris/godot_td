@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ces6c8kd16kom"]
+[gd_scene load_steps=6 format=3 uid="uid://ces6c8kd16kom"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_v7074"]
 [ext_resource type="Script" path="res://cost_control.gd" id="2_boe57"]
 [ext_resource type="Script" path="res://costs/unit.gd" id="3_l0re6"]
+[ext_resource type="Script" path="res://slots/countdown.gd" id="4_4pug7"]
 
 [sub_resource type="Resource" id="Resource_hjraa"]
 script = ExtResource("3_l0re6")
@@ -12,12 +13,13 @@ value = 0
 script = ExtResource("1_v7074")
 
 [node name="Wave" type="Label" parent="."]
-offset_left = 16.0
 offset_top = 16.0
-offset_right = 128.0
-offset_bottom = 40.0
+offset_right = 1152.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 20
 text = "WAVE: 1/10"
-horizontal_alignment = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ToEmit" type="Label" parent="."]
 visible = false
@@ -65,9 +67,9 @@ text = "Remove"
 
 [node name="Recenter" type="Button" parent="."]
 offset_left = 1096.0
-offset_top = 24.0
+offset_top = 16.0
 offset_right = 1128.0
-offset_bottom = 56.0
+offset_bottom = 48.0
 focus_mode = 0
 text = "*"
 
@@ -99,30 +101,29 @@ layout_mode = 2
 theme_override_constants/h_separation = 16
 columns = 3
 
-[node name="StartNextWave" type="Button" parent="."]
-offset_left = 24.0
-offset_top = 600.0
-offset_right = 174.0
-offset_bottom = 631.0
-focus_mode = 0
-text = "START NEXT WAVE"
-
 [node name="NextWaveUnits" type="Control" parent="."]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 16.0
-offset_top = 48.0
-offset_right = 136.0
-offset_bottom = 80.0
+offset_top = 16.0
+offset_right = 120.0
+offset_bottom = 48.0
 mouse_filter = 2
 script = ExtResource("2_boe57")
 cost = SubResource("Resource_hjraa")
 font_color = Color(1, 1, 1, 1)
+
+[node name="Countdown" type="Label" parent="."]
+offset_top = 600.0
+offset_right = 1152.0
+offset_bottom = 632.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_4pug7")
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Tower" to="." method="_on_tower_pressed"]
 [connection signal="pressed" from="Tower2" to="." method="_on_tower_2_pressed"]
 [connection signal="pressed" from="Remove" to="." method="_on_remove_pressed"]
 [connection signal="pressed" from="Recenter" to="." method="_on_recenter_pressed"]
-[connection signal="pressed" from="StartNextWave" to="." method="_on_start_next_wave_pressed"]

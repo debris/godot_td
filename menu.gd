@@ -1,9 +1,6 @@
 extends CanvasLayer
 
-signal start
 signal recenter
-signal add_tower
-signal add_tower2
 signal remove
 signal card_pressed(card: Card)
 # todo: should be wave data instead of units
@@ -21,19 +18,30 @@ var wave := 1:
 			update_wave_label()
 
 @onready var card_grid = $CenterContainer/CardGrid
-@onready var start_next_wave = $StartNextWave
 @onready var wave_label: Label = $Wave
 @onready var choose_one_label: Label = $ChooseOneLabel
 @onready var right_click_label: Label = $RightClickLabel
 @onready var next_wave_units: CostControl = $NextWaveUnits
+@onready var countdown: Countdown = $Countdown
 
 var extra_units := 0
 var pending_cost: Cost
 
 func _ready():
-	start_next_wave.visible = false
+	draw_cards()
+
+	countdown.time = 5.0
+	countdown.finished.connect(func():
+		_on_start_next_wave_pressed()
+	)
+
+func draw_cards():
+	countdown.active = false
 	choose_one_label.visible = true
 	right_click_label.visible = false
+
+	for cc in card_grid.get_children():
+		cc.queue_free()
 
 	for i in 3:
 		var card_control = CardControl.new()
@@ -57,6 +65,7 @@ func update_wave_label():
 	next_wave_units.cost = CostUnit.new(wave + extra_units)
 
 func reset_cards():
+	countdown.active = false
 	choose_one_label.visible = true
 	right_click_label.visible = false
 	for cc in card_grid.get_children():
@@ -67,29 +76,21 @@ func show_next_wave_button():
 	if pending_cost is CostUnit:
 		extra_units += pending_cost.value
 
-	start_next_wave.visible = true
+	countdown.active = true
+	countdown.time = 5.0
 	right_click_label.visible = false
 	next_wave_units.cost = CostUnit.new(wave + extra_units)
 
-func _on_start_pressed():
-	start.emit()
-
 func _on_recenter_pressed():
 	recenter.emit()
-
-func _on_tower_pressed():
-	add_tower.emit()
-
-func _on_tower_2_pressed():
-	add_tower2.emit()
 
 func _on_remove_pressed():
 	remove.emit()
 
 func _on_start_next_wave_pressed():
-	start_next_wave.visible = false
+	countdown.active = false
 	start_wave.emit(wave + extra_units)
 
 func _on__wave_finished():
 	wave += 1
-	reset_cards()
+	draw_cards()

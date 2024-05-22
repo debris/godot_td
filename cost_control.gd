@@ -29,7 +29,7 @@ func update_icon():
 	add_child(cost_icon)
 
 func update_label():
-	cost_label.text = str(cost.value) + "x "
+	cost_label.text = "+" + str(cost.value)
 
 func _ready():
 	custom_minimum_size = Vector2(120.0, 32.0)
