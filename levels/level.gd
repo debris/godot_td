@@ -1,6 +1,10 @@
 extends Node2D
 class_name Level
 
+signal cancel_card
+signal card_used
+signal wave_finished
+
 const PATH_LAYER: int = 0
 const SLOTS_LAYER: int = 1
 const START_LAYER: int = 2
@@ -8,6 +12,7 @@ const END_LAYER: int = 3
 
 @onready var tilemap: TileMap = $TileMap
 
+var enemies_layer = Node2D.new()
 var start_cells = null
 var end_cells = null
 var towers_by_index = {}
@@ -24,6 +29,7 @@ func _ready():
 
 	start_cells = tilemap.get_used_cells(START_LAYER)
 	end_cells = tilemap.get_used_cells(END_LAYER)
+	add_child(enemies_layer)
 
 func normalize_position(pos: Vector2) -> Vector2:
 	var index = tilemap.local_to_map(pos)
@@ -56,7 +62,7 @@ func spawn_unit():
 	var unit = Unit.new()
 	unit.position = tilemap.map_to_local(start_cells.pick_random())
 	unit.target_position = tilemap.map_to_local(end_cells.pick_random())
-	add_child(unit)
+	enemies_layer.add_child(unit)
 	unit.goal_reached.connect(func():
 		unit.queue_free()
 	)
@@ -86,3 +92,29 @@ func add_tower_at(pos: Vector2i, tower: Node2D):
 
 func _on_menu_remove():
 	add_child(DeleteTower.new())
+
+func _on_menu_card_pressed(card: Card):
+	var add_tower = AddTower.new(card.tower_constructor())
+	add_tower.cancelled.connect(func():
+		cancel_card.emit()
+	)
+	add_child(add_tower)
+	await add_tower.tower_added
+	add_tower.queue_free()
+	card_used.emit()
+
+func _on_menu_start_wave(units: int):
+	var spawn = Spawn.new()
+	spawn.limit = units
+	spawn.spawn.connect(func(_unit):
+		spawn_unit()
+	)
+	add_child(spawn)
+	await spawn.finished
+	spawn.queue_free()
+	enemies_layer.child_exiting_tree.connect(func(_child):
+		var enemies_left = enemies_layer.get_child_count()
+		print_debug("children_left: ", enemies_left)
+		if enemies_left == 0:
+			wave_finished.emit()
+	)

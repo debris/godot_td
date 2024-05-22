@@ -1,6 +1,9 @@
 extends Node2D
 class_name AddTower
 
+signal tower_added
+signal cancelled
+
 @export var tower_constructor: Callable
 
 var tower: Node2D = null
@@ -30,10 +33,14 @@ func _process(_delta):
 			var old_pos = tower.position
 			tower.active = true
 			get_parent().add_tower_at(index, tower)
+			tower_added.emit()
 			tower = tower_constructor.call()
 			tower.position = old_pos
 			get_parent().add_child(tower)
 	
 	if Input.is_action_just_pressed("right_click"):
-		tower.queue_free()
 		queue_free()
+		cancelled.emit()
+
+func _exit_tree():
+	tower.queue_free()

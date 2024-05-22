@@ -2,6 +2,7 @@ extends Node
 class_name Spawn
 
 signal spawn(unit: Unit)
+signal finished
 
 @export var limit := 2
 @export var interval := 0.5
@@ -20,3 +21,6 @@ func _process(delta):
 			limit -= 1
 			var unit = Unit.new()
 			spawn.emit(unit)
+		elif limit == 0:
+			limit -= 1
+			finished.emit()

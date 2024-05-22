@@ -57,8 +57,27 @@ offset_bottom = 287.0
 focus_mode = 0
 text = "Recenter"
 
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_top = 584.0
+offset_right = 1152.0
+offset_bottom = 784.0
+metadata/_edit_group_ = true
+
+[node name="CardGrid" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="StartNextWave" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 600.0
+offset_right = 174.0
+offset_bottom = 631.0
+focus_mode = 0
+text = "START NEXT WAVE"
+
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Tower" to="." method="_on_tower_pressed"]
 [connection signal="pressed" from="Tower2" to="." method="_on_tower_2_pressed"]
 [connection signal="pressed" from="Remove" to="." method="_on_remove_pressed"]
 [connection signal="pressed" from="Recenter" to="." method="_on_recenter_pressed"]
+[connection signal="pressed" from="StartNextWave" to="." method="_on_start_next_wave_pressed"]

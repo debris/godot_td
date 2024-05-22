@@ -65,6 +65,7 @@ func _ready():
 	visual_shape.color = color
 	visual_shape.shape = shape
 	visual_shape.position = shape_position
+	visual_shape.visible = false
 	parent.add_child(visual_shape)
 
 	body_area.area_entered.connect(func(buff):
