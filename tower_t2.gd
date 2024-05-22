@@ -10,7 +10,7 @@ class_name TowerT2
 		tower_range.shape_position = Vector2(radius / 2 + 16.0, 0.0)
 
 @export var damage := 3
-@export var speed := 4.0
+@export var speed := 2.0
 
 var active = false
 var reloading = false
@@ -24,7 +24,7 @@ var tower_range = TowerRange.new()
 func reset_state():
 	radius = 256.0
 	damage = 3
-	speed = 4.0
+	speed = 2.0
 
 func _ready():
 	var square = Square.new()

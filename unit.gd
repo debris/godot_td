@@ -6,6 +6,12 @@ const SPEED := 50.0
 
 signal goal_reached
 
+@export var active := true:
+	set(value):
+		active = value
+		area.monitorable = active
+		area.monitoring = active
+
 @export var health := Health.new()
 @export var target_position: Vector2:
 	set(value):
@@ -13,11 +19,11 @@ signal goal_reached
 		navigation_agent.target_position = target_position
 
 var navigation_agent = NavigationAgent2D.new()
+var area = Area2D.new()
 
 func _ready():
 	navigation_agent.path_desired_distance = 8.0
 	navigation_agent.navigation_finished.connect(func():
-		print_debug("unit escaped")
 		goal_reached.emit()
 	)
 	add_child(navigation_agent)
@@ -37,7 +43,6 @@ func _ready():
 	head.border_color = GameColor.BORDER
 	square.add_child(head)
 
-	var area = Area2D.new()
 	area.collision_layer = 0
 	area.collision_mask = 0
 	area.set_collision_layer_value(GameLayer.ENEMY, true)
@@ -69,7 +74,7 @@ func _ready():
 	)
 
 func _process(delta):
-	if Pause.paused:
+	if Pause.paused || !active:
 		return
 
 	var next_position = navigation_agent.get_next_path_position()

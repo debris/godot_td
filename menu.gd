@@ -22,13 +22,18 @@ var wave := 1:
 
 @onready var card_grid = $CenterContainer/CardGrid
 @onready var start_next_wave = $StartNextWave
-@onready var wave_label = $Wave
+@onready var wave_label: Label = $Wave
+@onready var choose_one_label: Label = $ChooseOneLabel
+@onready var right_click_label: Label = $RightClickLabel
+@onready var next_wave_units: CostControl = $NextWaveUnits
 
 var extra_units := 0
 var pending_cost: Cost
 
 func _ready():
 	start_next_wave.visible = false
+	choose_one_label.visible = true
+	right_click_label.visible = false
 
 	for i in 3:
 		var card_control = CardControl.new()
@@ -38,6 +43,8 @@ func _ready():
 		card_control.card_pressed.connect(func(card):
 			pending_cost = card.cost
 			card_pressed.emit(card)
+			choose_one_label.visible = false
+			right_click_label.visible = true
 
 			for cc in card_grid.get_children():
 				cc.pull_down()
@@ -46,9 +53,12 @@ func _ready():
 	update_wave_label()
 
 func update_wave_label():
-	wave_label.text = "wave: " + str(wave) + "/20"
+	wave_label.text = "WAVE " + str(wave) + "/10"
+	next_wave_units.cost = CostUnit.new(wave + extra_units)
 
 func reset_cards():
+	choose_one_label.visible = true
+	right_click_label.visible = false
 	for cc in card_grid.get_children():
 		cc.reset()
 
@@ -58,6 +68,8 @@ func show_next_wave_button():
 		extra_units += pending_cost.value
 
 	start_next_wave.visible = true
+	right_click_label.visible = false
+	next_wave_units.cost = CostUnit.new(wave + extra_units)
 
 func _on_start_pressed():
 	start.emit()

@@ -29,7 +29,6 @@ func _process(_delta):
 	else:
 		tower.modulate = Color.WHITE
 		if Input.is_action_just_pressed("left_click"):
-			print_debug("place tower")
 			var old_pos = tower.position
 			tower.active = true
 			get_parent().add_tower_at(index, tower)
