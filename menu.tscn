@@ -5,12 +5,15 @@
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_v7074")
 
-[node name="Score" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "score"
+[node name="Wave" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 48.0
+text = "Wave: 1/20"
 
 [node name="ToEmit" type="Label" parent="."]
+visible = false
 offset_top = 23.0
 offset_right = 42.0
 offset_bottom = 46.0
@@ -18,6 +21,7 @@ text = "to emit:
 "
 
 [node name="Start" type="Button" parent="."]
+visible = false
 offset_left = 16.0
 offset_top = 96.0
 offset_right = 64.0
@@ -26,6 +30,7 @@ focus_mode = 0
 text = "Start"
 
 [node name="Tower" type="Button" parent="."]
+visible = false
 offset_left = 16.0
 offset_top = 136.0
 offset_right = 73.0
@@ -34,6 +39,7 @@ focus_mode = 0
 text = "Tower"
 
 [node name="Tower2" type="Button" parent="."]
+visible = false
 offset_left = 16.0
 offset_top = 176.0
 offset_right = 73.0
@@ -42,6 +48,7 @@ focus_mode = 0
 text = "Tower2"
 
 [node name="Remove" type="Button" parent="."]
+visible = false
 offset_left = 16.0
 offset_top = 216.0
 offset_right = 87.0
@@ -50,12 +57,12 @@ focus_mode = 0
 text = "Remove"
 
 [node name="Recenter" type="Button" parent="."]
-offset_left = 16.0
-offset_top = 256.0
-offset_right = 87.0
-offset_bottom = 287.0
+offset_left = 1096.0
+offset_top = 24.0
+offset_right = 1128.0
+offset_bottom = 56.0
 focus_mode = 0
-text = "Recenter"
+text = "*"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 offset_top = 584.0

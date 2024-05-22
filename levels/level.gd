@@ -104,17 +104,13 @@ func _on_menu_card_pressed(card: Card):
 	card_used.emit()
 
 func _on_menu_start_wave(units: int):
-	var spawn = Spawn.new()
-	spawn.limit = units
-	spawn.spawn.connect(func(_unit):
-		spawn_unit()
-	)
-	add_child(spawn)
-	await spawn.finished
-	spawn.queue_free()
-	enemies_layer.child_exiting_tree.connect(func(_child):
-		var enemies_left = enemies_layer.get_child_count()
-		print_debug("children_left: ", enemies_left)
-		if enemies_left == 0:
-			wave_finished.emit()
-	)
+	var wave = Wave.new()
+	wave.tilemap = tilemap
+	wave.enemies_layer = enemies_layer
+	wave.start_cells = start_cells
+	wave.end_cells = end_cells
+	wave.units = units
+	add_child(wave)
+	await wave.wave_finished
+	wave.queue_free()
+	wave_finished.emit()

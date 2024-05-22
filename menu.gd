@@ -14,10 +14,18 @@ var all_cards = [
 	CardTowerT2.new()
 ]
 
-var extra_units := 0
+var wave := 1:
+	set(value):
+		wave = value
+		if is_node_ready():
+			update_wave_label()
 
 @onready var card_grid = $CenterContainer/CardGrid
 @onready var start_next_wave = $StartNextWave
+@onready var wave_label = $Wave
+
+var extra_units := 0
+var pending_cost: Cost
 
 func _ready():
 	start_next_wave.visible = false
@@ -28,17 +36,27 @@ func _ready():
 		card_grid.add_child(card_control)
 
 		card_control.card_pressed.connect(func(card):
+			pending_cost = card.cost
 			card_pressed.emit(card)
 
 			for cc in card_grid.get_children():
 				cc.pull_down()
 		)
+	
+	update_wave_label()
+
+func update_wave_label():
+	wave_label.text = "wave: " + str(wave) + "/20"
 
 func reset_cards():
 	for cc in card_grid.get_children():
 		cc.reset()
 
 func show_next_wave_button():
+	# apply cost
+	if pending_cost is CostUnit:
+		extra_units += pending_cost.value
+
 	start_next_wave.visible = true
 
 func _on_start_pressed():
@@ -58,7 +76,8 @@ func _on_remove_pressed():
 
 func _on_start_next_wave_pressed():
 	start_next_wave.visible = false
-	start_wave.emit(2 + extra_units)
+	start_wave.emit(wave + extra_units)
 
 func _on__wave_finished():
+	wave += 1
 	reset_cards()

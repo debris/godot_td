@@ -4,7 +4,7 @@ class_name Spawn
 signal spawn(unit: Unit)
 signal finished
 
-@export var limit := 2
+@export var limit := 0
 @export var interval := 0.5
 
 var time_since = 0.0
