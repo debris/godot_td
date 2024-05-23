@@ -8,7 +8,8 @@ signal start_wave(units: int)
 
 var all_cards = [
 	CardTower.new(),
-	CardTowerT2.new()
+	CardTowerT2.new(),
+	CardTowerFreeze.new()
 ]
 
 var wave := 1:

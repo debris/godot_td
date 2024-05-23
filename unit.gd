@@ -18,6 +18,12 @@ signal goal_reached
 		target_position = value
 		navigation_agent.target_position = target_position
 
+@export var speed_modifier := 1.0
+
+func reset():
+	speed_modifier = 1.0
+
+var buffs = {}
 var navigation_agent = NavigationAgent2D.new()
 var area = Area2D.new()
 
@@ -55,9 +61,10 @@ func _ready():
 	area.add_child(collision_shape)
 
 	area.area_entered.connect(func(body):
+		var bullet = body.get_parent()
 		# hit by the bullet
-		if body is DamageArea:
-			health.current -= body.damage
+		if "damage" in bullet:
+			health.current -= bullet.damage
 	)
 
 	health.death.connect(func():
@@ -78,4 +85,4 @@ func _process(delta):
 		return
 
 	var next_position = navigation_agent.get_next_path_position()
-	position = position.move_toward(next_position, delta * SPEED)
+	position = position.move_toward(next_position, delta * SPEED * speed_modifier)

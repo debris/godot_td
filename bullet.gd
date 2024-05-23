@@ -1,20 +1,15 @@
 extends Node2D
 class_name Bullet
 
-@export var damage := 3:
-	set(value):
-		damage = value
-		area.damage = damage
-
+@export var damage := 3
 @export var direction := Vector2.ZERO
 @export var speed := 512.0
 # should be based on radius
 @export var distance_left := 100.0
 
-var area = DamageArea.new()
+var area = Area2D.new()
 
 func _ready():
-	area.damage = damage
 	area.collision_layer = 0
 	area.collision_mask = 0
 	area.set_collision_layer_value(GameLayer.BULLET, true)

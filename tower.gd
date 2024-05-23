@@ -10,6 +10,7 @@ class_name Tower
 
 @export var damage := 3
 @export var speed := 1.0
+@export var bullet_factory: Callable = Bullet.new
 
 var active = false
 var reloading = false
@@ -55,7 +56,8 @@ func _ready():
 
 		if !reloading:
 			
-			var bullet = Bullet.new()
+			#var bullet = FreezingBullet.new()
+			var bullet = bullet_factory.call()
 			bullet.damage = damage
 			bullet.position = position + Vector2(24.0, 0.0).rotated(angle)
 			bullet.direction = Vector2(24.0, 0.0).rotated(angle)

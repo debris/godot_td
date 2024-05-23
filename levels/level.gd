@@ -67,12 +67,6 @@ func spawn_unit():
 		unit.queue_free()
 	)
 
-func _on_menu_add_tower():
-	add_child(AddTower.new(Tower.new))
-
-func _on_menu_add_tower_2():
-	add_child(AddTower.new(TowerT2.new))
-
 func can_add_tower_at(pos: Vector2i) -> bool:
 	# check if there is a slot
 	if tilemap.get_cell_source_id(SLOTS_LAYER, pos) == -1:
