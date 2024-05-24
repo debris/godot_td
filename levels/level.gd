@@ -35,6 +35,13 @@ func normalize_position(pos: Vector2) -> Vector2:
 	var index = tilemap.local_to_map(pos)
 	return tilemap.map_to_local(index)
 
+func mouse_index() -> Vector2i:
+	var mouse_position = get_global_mouse_position()
+	return tilemap.local_to_map(mouse_position)
+
+func index_to_position(index: Vector2i) -> Vector2:
+	return tilemap.map_to_local(index)
+
 func get_center() -> Vector2:
 	var cells = tilemap.get_used_cells(PATH_LAYER)
 	var lowest_x = -1
@@ -73,6 +80,15 @@ func can_add_tower_at(pos: Vector2i) -> bool:
 		return false
 	
 	return !towers_by_index.has(pos) 
+
+func move_tower(from: Vector2i, to: Vector2i):
+	if from == to:
+		return
+
+	assert(!towers_by_index.has(to), "destination should not have any tower")
+	var tower = towers_by_index[from]
+	towers_by_index.erase(from)
+	towers_by_index[to] = tower
 
 func remove_tower_at(pos: Vector2i):
 	if towers_by_index.has(pos):

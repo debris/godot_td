@@ -108,6 +108,12 @@ func _process(_delta):
 		if Input.is_action_just_pressed("rotate_right"):
 			get_parent().rotate_right()
 
+		if Input.is_action_just_pressed("left_click"):
+			var move_tower = MoveTower.new()
+			move_tower.level = get_parent().get_parent()
+			move_tower.tower = get_parent()
+			get_parent().add_sibling(move_tower)
+
 	if Pause.paused:
 		return
 

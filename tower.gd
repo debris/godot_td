@@ -11,11 +11,16 @@ class_name Tower
 @export var damage := 3
 @export var speed := 1.0
 @export var bullet_factory: Callable = Bullet.new
+@export var square_color := GameColor.TOWER:
+	set(value):
+		square_color = value
+		square.color = square_color
 
 var active = false
 var reloading = false
 var size = Vector2(32.0, 32.0)
 var tower_range = TowerRange.new()
+var square = Square.new()
 
 func reset_state():
 	radius = 128.0
@@ -23,9 +28,8 @@ func reset_state():
 	speed = 1.0
 
 func _ready():
-	var square = Square.new()
 	square.size = size
-	square.color = GameColor.TOWER
+	square.color = square_color
 	square.border_color = GameColor.BORDER
 	add_child(square)
 
