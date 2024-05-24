@@ -22,6 +22,7 @@ signal goal_reached
 
 func reset():
 	speed_modifier = 1.0
+	modulate = Color.WHITE
 
 var buffs = {}
 var navigation_agent = NavigationAgent2D.new()
