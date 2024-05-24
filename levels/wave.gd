@@ -1,6 +1,7 @@
 extends Node
 class_name Wave
 
+signal life_lost
 signal wave_finished
 
 @export var tilemap: TileMap
@@ -22,6 +23,7 @@ func _ready():
 		unit.position = tilemap.map_to_local(start_cells.pick_random())
 		unit.target_position = tilemap.map_to_local(end_cells.pick_random())
 		unit.goal_reached.connect(func():
+			life_lost.emit()
 			unit.queue_free()
 		)
 		enemies_layer.add_child(unit)

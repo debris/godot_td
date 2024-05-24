@@ -3,6 +3,7 @@ class_name Level
 
 signal cancel_card
 signal card_used
+signal life_lost
 signal wave_finished
 
 const PATH_LAYER: int = 0
@@ -115,6 +116,9 @@ func _on_menu_card_pressed(card: Card):
 
 func _on_menu_start_wave(units: int):
 	var wave = Wave.new()
+	wave.life_lost.connect(func():
+		life_lost.emit()
+	)
 	wave.tilemap = tilemap
 	wave.enemies_layer = enemies_layer
 	wave.start_cells = start_cells

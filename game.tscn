@@ -34,6 +34,7 @@ level = NodePath("../../0")
 
 [connection signal="cancel_card" from="Map/0" to="Map/Menu" method="reset_cards"]
 [connection signal="card_used" from="Map/0" to="Map/Menu" method="show_next_wave_button"]
+[connection signal="life_lost" from="Map/0" to="Map/Menu" method="_on__life_lost"]
 [connection signal="wave_finished" from="Map/0" to="Map/Menu" method="_on__wave_finished"]
 [connection signal="card_pressed" from="Map/Menu" to="Map/0" method="_on_menu_card_pressed"]
 [connection signal="recenter" from="Map/Menu" to="Map/Camera2D/CameraCenter" method="recenter"]

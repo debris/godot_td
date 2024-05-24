@@ -12,24 +12,35 @@ var all_cards = [
 	CardTowerFreeze.new()
 ]
 
-var wave := 1:
-	set(value):
-		wave = value
-		if is_node_ready():
-			update_wave_label()
-
 @onready var card_grid = $CenterContainer/CardGrid
 @onready var wave_label: Label = $Wave
 @onready var choose_one_label: Label = $ChooseOneLabel
 @onready var right_click_label: Label = $RightClickLabel
 @onready var next_wave_units: CostControl = $NextWaveUnits
 @onready var countdown: Countdown = $Countdown
+@onready var health_label: Label = $HealthLabel
+
+var wave := 1:
+	set(value):
+		wave = value
+		if is_node_ready():
+			update_wave_label()
 
 var extra_units := 0
 var pending_cost: Cost
 
+var health := 10:
+	set(value):
+		health = value
+		if is_node_ready():
+			update_health_label()
+
+func update_health_label():
+	health_label.text = "HEALTH: " + str(health) + "/10"
+
 func _ready():
 	draw_cards()
+	update_health_label()
 
 	countdown.time = 5.0
 	countdown.finished.connect(func():
@@ -95,3 +106,6 @@ func _on_start_next_wave_pressed():
 func _on__wave_finished():
 	wave += 1
 	draw_cards()
+
+func _on__life_lost():
+	health -= 1
