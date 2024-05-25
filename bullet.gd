@@ -30,7 +30,7 @@ func _process(delta):
 	if Pause.paused:
 		return
 	
-	position = position.move_toward(direction * Vector2(1000.0, 1000.0), speed * delta)
+	position = position.move_toward(Vector2(24.0, 0).rotated(rotation) * Vector2(1000.0, 1000.0), speed * delta)
 	distance_left -= speed * delta
 	if distance_left <= 0.0:
 		queue_free()

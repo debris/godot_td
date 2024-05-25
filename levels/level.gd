@@ -105,7 +105,9 @@ func _on_menu_remove():
 	add_child(DeleteTower.new())
 
 func _on_menu_card_pressed(card: Card):
-	var add_tower = AddTower.new(card.tower_constructor())
+	var add_tower = AddTower.new()
+	add_tower.tower_constructor = card.tower_constructor()
+	add_tower.level = self
 	add_tower.cancelled.connect(func():
 		cancel_card.emit()
 	)

@@ -2,14 +2,18 @@
 extends Node2D
 class_name Tower
 
+@export var damage := 3
+@export var speed := 1.0
 @export var radius := 128.0:
 	set(value):
 		radius = value
-		if tower_range.shape is CircleShape2D:
-			tower_range.shape.radius = radius
+		udpate_range_shape()
 
-@export var damage := 3
-@export var speed := 1.0
+@export var rifle: Rifle = RifleCircleSingle.new():
+	set(value):
+		rifle = value
+		udpate_range_shape()
+
 @export var bullet_factory: Callable = Bullet.new
 @export var square_color := GameColor.TOWER:
 	set(value):
@@ -18,9 +22,12 @@ class_name Tower
 
 var active = false
 var reloading = false
-var size = Vector2(32.0, 32.0)
 var tower_range = TowerRange.new()
 var square = Square.new()
+
+func udpate_range_shape():
+	tower_range.shape = rifle.range_shape(radius)
+	tower_range.shape_position = rifle.range_position(radius)
 
 func reset_state():
 	radius = 128.0
@@ -28,51 +35,34 @@ func reset_state():
 	speed = 1.0
 
 func _ready():
-	square.size = size
+	square.size = Vector2(32.0, 32.0)
 	square.color = square_color
 	square.border_color = GameColor.BORDER
 	add_child(square)
 
-	var circle = Circle.new()
-	circle.radius = 8.0
-	circle.color = GameColor.TOWER_RIFLE
-	add_child(circle)
+	rifle.bullet_fired.connect(func(bullet):
+		bullet.damage = damage
+		bullet.distance_left = radius - 24.0
+		add_sibling(bullet)
+	)
+	add_child(rifle)
 
-	tower_range.shape = CircleShape2D.new()
-	tower_range.shape.radius = radius
+	tower_range.shape = rifle.range_shape(radius)
+	tower_range.shape_position = rifle.range_position(radius)
 	add_child(tower_range)
 
-	var line = Line2D.new()
-	line.add_point(Vector2.ZERO)
-	line.add_point(Vector2(24.0, 0.0))
-	line.default_color = GameColor.TOWER_RIFLE
-	line.width = 6.0
-	add_child(line)
-
 	tower_range.closest_target.connect(func(pos: Vector2):
-		line.clear_points()	
-		line.add_point(Vector2.ZERO)
-		var angle = get_angle_to(pos)
-		line.add_point(Vector2(24.0, 0.0).rotated(angle))
-
 		if !active:
 			return
 
-		if !reloading:
-			
-			#var bullet = FreezingBullet.new()
-			var bullet = bullet_factory.call()
-			bullet.damage = damage
-			bullet.position = position + Vector2(24.0, 0.0).rotated(angle)
-			bullet.direction = Vector2(24.0, 0.0).rotated(angle)
-			bullet.distance_left = radius - 24.0
-			add_sibling(bullet)
+		rifle.target_in_range(pos)
 
+		if !reloading:
+			rifle.fire(bullet_factory)	
 			reloading = true
 
 			var loadbar = LoadBar.new()
 			loadbar.position = Vector2(0, 12.0)
-			# TODO: that's the rate of fire
 			loadbar.time = speed
 			add_child(loadbar)
 			await loadbar.finished
@@ -82,7 +72,9 @@ func _ready():
 	)
 
 func rotate_left():
-	pass
+	var rot = deg_to_rad(-90.0)
+	rotate(rot)
 
 func rotate_right():
-	pass
+	var rot = deg_to_rad(90.0)
+	rotate(rot)

@@ -17,8 +17,6 @@ var reloading = false
 
 var size = Vector2(32.0, 32.0)
 
-var line = Line2D.new()
-var line2 = Line2D.new()
 var tower_range = TowerRange.new()
 
 func reset_state():
@@ -33,17 +31,8 @@ func _ready():
 	square.border_color = GameColor.BORDER
 	add_child(square)
 
-	line.add_point(Vector2(0.0, -3.0))
-	line.add_point(Vector2(24.0, -3.0))
-	line.default_color = GameColor.TOWER_RIFLE
-	line.width = 4.0
-	add_child(line)
-
-	line2.add_point(Vector2(0.0, 3.0))
-	line2.add_point(Vector2(24.0, 3.0))
-	line2.default_color = GameColor.TOWER_RIFLE
-	line2.width = 4.0
-	add_child(line2)
+	var rifle = RifleStaticDouble.new()
+	add_child(rifle)
 
 	tower_range.shape = RectangleShape2D.new()
 	tower_range.shape.size = Vector2(radius, 32.0)

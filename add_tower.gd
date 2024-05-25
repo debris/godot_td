@@ -1,29 +1,25 @@
-extends Node2D
+extends Node
 class_name AddTower
 
 signal tower_added
 signal cancelled
 
 @export var tower_constructor: Callable
+@export var level: Level
 
 var tower: Node2D = null
 
-func _init(tc):
-	tower_constructor = tc
-
 func _ready():
 	tower = tower_constructor.call()
-	get_parent().add_child(tower)
+	level.add_child(tower)
 
-	var mouse_position = get_global_mouse_position()
-	tower.position = get_parent().normalize_position(mouse_position)
+	tower.position = level.index_to_position(level.mouse_index())
 
 func _process(_delta):
-	var mouse_position = get_global_mouse_position()
-	var index = get_parent().tilemap.local_to_map(mouse_position)
-	tower.position = get_parent().tilemap.map_to_local(index)
+	var index = level.mouse_index()
+	tower.position = level.index_to_position(index)
 
-	if !get_parent().can_add_tower_at(index):
+	if !level.can_add_tower_at(index):
 		tower.modulate = Color.BLACK
 		tower.modulate.a = 0.2
 	else:
@@ -31,11 +27,11 @@ func _process(_delta):
 		if Input.is_action_just_pressed("left_click"):
 			var old_pos = tower.position
 			tower.active = true
-			get_parent().add_tower_at(index, tower)
+			level.add_tower_at(index, tower)
 			tower_added.emit()
 			tower = tower_constructor.call()
 			tower.position = old_pos
-			get_parent().add_child(tower)
+			level.add_child(tower)
 	
 	if Input.is_action_just_pressed("right_click"):
 		queue_free()
