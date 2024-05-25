@@ -37,8 +37,8 @@ func update_cost():
 	color_rect.add_child(cost_control)
 
 func update_stats():
-	stats_control.attack_speed = tower.speed
-	stats_control.damage = tower.damage
+	stats_control.attack_speed = tower.stats.speed
+	stats_control.damage = tower.stats.damage
 	stats_control.description = ""
 
 func _ready():

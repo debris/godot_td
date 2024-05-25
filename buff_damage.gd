@@ -7,9 +7,8 @@ class_name BuffDamage
 		multiplier = value
 		update_tooltip_text()
 		
-func add_buff_to(tower: Node2D):
-	if "damage" in tower:
-		tower.damage *= multiplier
+func add_buff_to(tower: Tower):
+	tower.stats.damage *= multiplier
 
 func tooltip_text() -> String:
 	return "DAMAGE * " + str(multiplier)

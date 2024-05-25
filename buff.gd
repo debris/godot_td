@@ -20,7 +20,7 @@ func _ready():
 func update_tooltip_text():
 	display_square_tooltip.text = tooltip_text()
 
-func add_buff_to(_tower: Node2D):
+func add_buff_to(_tower: Tower):
 	assert(false, "buff unimplemented")
 
 func tooltip_text() -> String:

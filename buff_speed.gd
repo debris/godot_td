@@ -7,9 +7,8 @@ class_name BuffSpeed
 		multiplier = value
 		update_tooltip_text()
 		
-func add_buff_to(tower: Node2D):
-	if "speed" in tower:
-		tower.speed *= multiplier
+func add_buff_to(tower: Tower):
+	tower.stats.speed *= multiplier
 
 func tooltip_text() -> String:
 	return "SPEED * " + str(multiplier)

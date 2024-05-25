@@ -2,7 +2,7 @@
 extends Node
 class_name TowerRange
 
-signal closest_target(pos: Vector2)
+signal target_in_range(pos: Vector2)
 
 @export var size := Vector2(32.0, 32.0)
 @export var shape: Shape2D:
@@ -126,4 +126,4 @@ func _process(_delta):
 			closest_distance = distance
 
 	if closest_enemy != null:
-		closest_target.emit(closest_enemy.global_position)
+		target_in_range.emit(closest_enemy.global_position)
