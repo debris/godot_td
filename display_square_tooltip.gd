@@ -16,10 +16,11 @@ func _ready():
 
 	static_body.mouse_entered.connect(func():
 		assert(tooltip == null, "tooltip should be removed")
-		tooltip = Tooltip.new()
-		tooltip.z_index = 1
+		tooltip = Label.new()
+		tooltip.add_theme_font_size_override("font_size", 10)
+		tooltip.add_theme_color_override("font_color", Color.BLACK)
 		tooltip.text = text
-		get_parent().add_child(tooltip)
+		TooltipLayer.add_tooltip(tooltip)
 	)
 
 	static_body.mouse_exited.connect(func():

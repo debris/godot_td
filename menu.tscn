@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://menu.gd" id="1_v7074"]
 [ext_resource type="Script" path="res://cost_control.gd" id="2_boe57"]
 [ext_resource type="Script" path="res://costs/unit.gd" id="3_l0re6"]
-[ext_resource type="Script" path="res://slots/countdown.gd" id="4_4pug7"]
+[ext_resource type="Script" path="res://countdown.gd" id="4_31rlm"]
 
 [sub_resource type="Resource" id="Resource_hjraa"]
 script = ExtResource("3_l0re6")
@@ -120,7 +120,7 @@ offset_bottom = 632.0
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("4_4pug7")
+script = ExtResource("4_31rlm")
 
 [node name="HealthLabel" type="Label" parent="."]
 offset_left = 8.0

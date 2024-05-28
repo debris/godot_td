@@ -29,6 +29,7 @@ config/icon="res://icon.svg"
 
 Pause="*res://pause.gd"
 GameColor="*res://colors.gd"
+TooltipLayer="*res://tooltip_layer.gd"
 
 [display]
 

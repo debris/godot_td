@@ -2,13 +2,14 @@ extends Control
 class_name StatsControl
 
 @export var attack_speed: float
-@export var damage: int
+@export var damage: float
 @export var description: String
 
 func _ready():
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+
 	var grid = GridContainer.new()
-	grid.size = size - Vector2(32.0, 0.0)
+	grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	grid.anchors_preset = PRESET_FULL_RECT
 	grid.add_theme_constant_override("v_separation", 0)
 	add_child(grid)
@@ -30,3 +31,5 @@ func _ready():
 	desc_label.add_theme_font_size_override("font_size", 10)
 	desc_label.text = description
 	grid.add_child(desc_label)
+
+	custom_minimum_size = Vector2(as_label.size.x, 30.0)

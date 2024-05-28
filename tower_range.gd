@@ -22,6 +22,7 @@ var buffs = {}
 var hovered = false
 var range_shape = CollisionShape2D.new()
 var visual_shape = VisualShape.new()
+var stats_control = null
 
 func _ready():
 	var parent = get_parent()
@@ -83,11 +84,17 @@ func _ready():
 	static_body.mouse_entered.connect(func():
 		visual_shape.visible = true
 		hovered = true
+		stats_control = StatsControl.new()
+		stats_control.attack_speed = get_parent().stats.speed
+		stats_control.damage = get_parent().stats.damage
+		TooltipLayer.add_tooltip(stats_control)
 	)
 
 	static_body.mouse_exited.connect(func():
 		visual_shape.visible = false
 		hovered = false
+		stats_control.queue_free()
+		stats_control = null
 	)
 
 	area.area_entered.connect(func(body):
