@@ -21,7 +21,7 @@ func _ready():
 	add_child(grid)
 
 func add_tooltip(tooltip):
-	grid.global_position = get_viewport().get_mouse_position()
+	grid.global_position = get_viewport().get_mouse_position() + Vector2(32.0, 32.0)
 	tooltip.tree_exited.connect(func():
 		grid.size = grid.custom_minimum_size
 	)

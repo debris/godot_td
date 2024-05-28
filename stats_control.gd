@@ -4,9 +4,14 @@ class_name StatsControl
 @export var attack_speed: float:
 	set(value):
 		attack_speed = value
+		update_as_label()
 
 
-@export var damage: float
+@export var damage: float:
+	set(value):
+		damage = value
+		update_dmg_label()
+
 @export var description: String
 
 var as_label = Label.new()
@@ -30,10 +35,12 @@ func _ready():
 
 	as_label.add_theme_color_override("font_color", Color.BLACK)
 	as_label.add_theme_font_size_override("font_size", 10)
+	update_as_label()
 	grid.add_child(as_label)
 
 	dmg_label.add_theme_color_override("font_color", Color.BLACK)
 	dmg_label.add_theme_font_size_override("font_size", 10)
+	update_dmg_label()
 	grid.add_child(dmg_label)
 
 	desc_label.add_theme_color_override("font_color", Color.BLACK)
@@ -42,6 +49,3 @@ func _ready():
 	grid.add_child(desc_label)
 
 	custom_minimum_size = Vector2(as_label.size.x, 30.0)
-
-	update_as_label()
-	update_dmg_label()
