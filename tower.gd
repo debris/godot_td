@@ -28,6 +28,7 @@ func reset_state():
 var active = false
 var reloading = false
 var tower_range = TowerRange.new()
+var mouse_hover = MouseHover.new()
 var square = Square.new()
 
 func update_range_shape():
@@ -48,10 +49,32 @@ func _ready():
 	)
 	add_child(rifle)
 
+	mouse_hover.tower = self
+	add_child(mouse_hover)
+
+	mouse_hover.mouse_entered.connect(tower_range.show)
+	mouse_hover.mouse_exited.connect(tower_range.hide)
 	update_range_shape()
 	add_child(tower_range)
 
 	tower_range.target_in_range.connect(_on_target_in_range)
+
+	var start_moving = StartMovingTower.new()
+	start_moving.tower = self
+	start_moving.level = get_parent()
+	start_moving.mouse_hover = mouse_hover
+	add_child(start_moving)
+
+	var stats_display = StatsDisplay.new()
+	stats_display.tower = self
+	mouse_hover.mouse_entered.connect(stats_display.show)
+	mouse_hover.mouse_exited.connect(stats_display.hide)
+	add_child(stats_display)
+
+	var tower_rotate = TowerRotate.new()
+	tower_rotate.tower = self
+	tower_rotate.mouse_hover = mouse_hover
+	add_child(tower_rotate)
 
 func _on_target_in_range(target: Vector2):
 	if !active:
@@ -71,11 +94,3 @@ func _on_target_in_range(target: Vector2):
 		loadbar.queue_free()
 
 		reloading = false
-
-func rotate_left():
-	var rot = deg_to_rad(-90.0)
-	rotate(rot)
-
-func rotate_right():
-	var rot = deg_to_rad(90.0)
-	rotate(rot)

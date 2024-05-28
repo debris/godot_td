@@ -19,24 +19,18 @@ signal target_in_range(pos: Vector2)
 
 var enemies = {}
 var buffs = {}
-var hovered = false
 var range_shape = CollisionShape2D.new()
 var visual_shape = VisualShape.new()
 var stats_control = null
 
+func show():
+	visual_shape.visible = true
+
+func hide():
+	visual_shape.visible = false
+
 func _ready():
 	var parent = get_parent()
-
-	var static_body = StaticBody2D.new()
-	static_body.input_pickable = true
-	static_body.collision_layer = 1
-	static_body.collision_mask = 1
-	parent.add_child(static_body)
-
-	var collision_shape = CollisionShape2D.new()
-	collision_shape.shape = RectangleShape2D.new()
-	collision_shape.shape.size = size
-	static_body.add_child(collision_shape)
 
 	var body_area = Area2D.new()
 	body_area.collision_layer = 0
@@ -81,22 +75,6 @@ func _ready():
 			b.add_buff_to(parent)
 	)
 
-	static_body.mouse_entered.connect(func():
-		visual_shape.visible = true
-		hovered = true
-		stats_control = StatsControl.new()
-		stats_control.attack_speed = get_parent().stats.speed
-		stats_control.damage = get_parent().stats.damage
-		TooltipLayer.add_tooltip(stats_control)
-	)
-
-	static_body.mouse_exited.connect(func():
-		visual_shape.visible = false
-		hovered = false
-		stats_control.queue_free()
-		stats_control = null
-	)
-
 	area.area_entered.connect(func(body):
 		enemies[body] = true
 		print_debug("enemy in range")
@@ -108,19 +86,6 @@ func _ready():
 	)
 
 func _process(_delta):
-	if hovered:
-		if Input.is_action_just_pressed("rotate_left"):
-			get_parent().rotate_left()
-
-		if Input.is_action_just_pressed("rotate_right"):
-			get_parent().rotate_right()
-
-		if Input.is_action_just_pressed("left_click"):
-			var move_tower = MoveTower.new()
-			move_tower.level = get_parent().get_parent()
-			move_tower.tower = get_parent()
-			get_parent().add_sibling(move_tower)
-
 	if Pause.paused:
 		return
 

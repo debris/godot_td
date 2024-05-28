@@ -1,7 +1,7 @@
 extends Node
 class_name MoveTower
 
-@export var tower: Node2D
+@export var tower: Tower
 @export var level: Level
 
 var from_index: Vector2i
