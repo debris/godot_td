@@ -32,6 +32,9 @@ func update():
 	shape = parent.rifle.range_shape(parent.stats.radius)
 	shape_position = parent.rifle.range_position(parent.stats.radius)
 
+func get_enemies():
+	return enemies.keys()
+
 func _ready():
 	update()
 	var parent = get_parent()
@@ -57,26 +60,8 @@ func _ready():
 
 	area.area_entered.connect(func(body):
 		enemies[body] = true
-		print_debug("enemy in range")
 	)
 
 	area.area_exited.connect(func(body):
-		print_debug("enemy exited")	
 		enemies.erase(body)
 	)
-
-
-func _process(_delta):
-	if Pause.paused:
-		return
-
-	var closest_distance = 0
-	var closest_enemy = null
-	for enemy in enemies:
-		var distance = get_parent().global_position.distance_to(enemy.global_position)
-		if closest_enemy == null || distance < closest_distance:
-			closest_enemy = enemy
-			closest_distance = distance
-
-	if closest_enemy != null:
-		target_in_range.emit(closest_enemy.global_position)

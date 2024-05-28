@@ -34,6 +34,7 @@ var active = false
 var reloading = false
 var tower_range = TowerRange.new()
 var square = Square.new()
+var nearest_enemy = TowerNearestEnemy.new()
 
 func _ready():
 	var mouse_hover = TowerMouseHover.new()
@@ -60,8 +61,6 @@ func _ready():
 	rifle_changed.connect(tower_range.update)
 	add_child(tower_range)
 
-	tower_range.target_in_range.connect(_on_target_in_range)
-
 	var move_start = TowerMoveStart.new()
 	move_start.tower = self
 	move_start.level = get_parent()
@@ -83,11 +82,21 @@ func _ready():
 	var tower_buffs = TowerBuffs.new()
 	add_child(tower_buffs)
 
-func _on_target_in_range(target: Vector2):
+	nearest_enemy.tower_range = tower_range
+	add_child(nearest_enemy)
+
+func _process(_delta):
+	if Pause.paused:
+		return
+
 	if !active:
 		return
 
-	rifle.target_in_range(target)
+	var enemy = nearest_enemy.get_nearest_enemy()
+	if enemy == null:
+		return
+
+	rifle.target_in_range(enemy.global_position)
 
 	if !reloading:
 		rifle.fire(bullet_factory)	
