@@ -3,7 +3,7 @@ extends Node
 class_name TowerRotate
 
 @export var tower: Tower
-@export var mouse_hover: MouseHover
+@export var mouse_hover: TowerMouseHover
 
 func _input(event):
 	if !mouse_hover.is_hovered():

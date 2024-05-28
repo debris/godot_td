@@ -19,3 +19,8 @@ func hide():
 	if stats_control != null:
 		stats_control.queue_free()
 		stats_control = null
+
+func refresh():
+	if stats_control != null:
+		stats_control.attack_speed = tower.stats.speed
+		stats_control.damage = tower.stats.damage

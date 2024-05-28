@@ -1,10 +1,10 @@
 @tool
 extends Node
-class_name StartMovingTower
+class_name TowerMoveStart
 
 @export var tower: Tower
 @export var level: Level
-@export var mouse_hover: MouseHover
+@export var mouse_hover: TowerMouseHover
 
 func _input(event):
 	if !mouse_hover.is_hovered():
@@ -14,7 +14,7 @@ func _input(event):
 		return
 
 	if event.is_action_pressed("left_click"):
-		var move_tower = MoveTower.new()
-		move_tower.level = level
-		move_tower.tower = tower
-		tower.add_child(move_tower)
+		var move = TowerMove.new()
+		move.level = level
+		move.tower = tower
+		tower.add_child(move)

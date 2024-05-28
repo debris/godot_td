@@ -1,6 +1,6 @@
 @tool
 extends Node
-class_name MouseHover
+class_name TowerMouseHover
 
 signal mouse_entered
 signal mouse_exited
