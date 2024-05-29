@@ -1,10 +1,8 @@
 @tool
-extends Node
+extends Node2D
 class_name TowerRange
 
-signal target_in_range(pos: Vector2)
-
-@export var size := Vector2(32.0, 32.0)
+@export var tower: Tower
 @export var shape: Shape2D:
 	set(value):
 		shape = value
@@ -21,29 +19,27 @@ var enemies = {}
 var range_shape = CollisionShape2D.new()
 var visual_shape = VisualShape.new()
 
-func show():
+func show_range():
 	visual_shape.visible = true
 
-func hide():
+func hide_range():
 	visual_shape.visible = false
 
 func update():
-	var parent = get_parent()
-	shape = parent.rifle.range_shape(parent.stats.radius)
-	shape_position = parent.rifle.range_position(parent.stats.radius)
+	shape = tower.rifle.range_shape(tower.stats.radius)
+	shape_position = tower.rifle.range_position(tower.stats.radius)
 
 func get_enemies():
 	return enemies.keys()
 
 func _ready():
 	update()
-	var parent = get_parent()
 
 	var area = Area2D.new()
 	area.collision_layer = 0
 	area.collision_mask = 0
 	area.set_collision_mask_value(GameLayer.ENEMY, true)
-	parent.add_child(area)
+	add_child(area)
 
 	range_shape.shape = shape
 	range_shape.position = shape_position
@@ -56,7 +52,7 @@ func _ready():
 	visual_shape.shape = shape
 	visual_shape.position = shape_position
 	visual_shape.visible = false
-	parent.add_child(visual_shape)
+	add_child(visual_shape)
 
 	area.area_entered.connect(func(body):
 		enemies[body] = true

@@ -2,8 +2,6 @@
 extends Node2D
 class_name Rifle
 
-signal bullet_fired(bullet: Bullet)
-
 func range_shape(_radius: float) -> Shape2D:
 	assert(false, "unimplemented")
 	return null
@@ -11,9 +9,9 @@ func range_shape(_radius: float) -> Shape2D:
 func range_position(_radius: float) -> Vector2:
 	return Vector2.ZERO
 	
-func target_in_range(_target: Vector2):
+func look_at_target(_target: Vector2):
 	pass
 
-func fire(_bullet_factory: Callable):
+func fire_points() -> Array[Node2D]:
 	assert(false, "unimplemented")
-	pass
+	return []

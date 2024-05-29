@@ -3,6 +3,7 @@ extends Node
 class_name TowerRotate
 
 @export var tower: Tower
+@export var tower_range: TowerRange
 @export var mouse_hover: TowerMouseHover
 
 func _input(event):
@@ -17,8 +18,10 @@ func _input(event):
 
 func rotate_left():
 	var rot = deg_to_rad(-90.0)
-	tower.rotate(rot)
+	tower.rifle.rotate(rot)
+	tower_range.rotate(rot)
 
 func rotate_right():
 	var rot = deg_to_rad(90.0)
-	tower.rotate(rot)
+	tower.rifle.rotate(rot)
+	tower_range.rotate(rot)

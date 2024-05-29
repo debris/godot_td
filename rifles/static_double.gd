@@ -2,6 +2,8 @@
 extends Rifle
 class_name RifleStaticDouble
 
+var muzzles: Array[Node2D] = []
+
 func _ready():
 	var line = Line2D.new()
 	
@@ -17,6 +19,16 @@ func _ready():
 	line2.default_color = GameColor.TOWER_RIFLE
 	line2.width = 4.0
 	add_child(line2)
+
+	var muzzle = Node2D.new()
+	muzzle.position = Vector2(24.0, -3.0)
+	line.add_child(muzzle)
+	muzzles.push_back(muzzle)
+
+	var muzzle2 = Node2D.new()
+	muzzle2.position = Vector2(24.0, 3.0)
+	line2.add_child(muzzle2)
+	muzzles.push_back(muzzle2)
 	
 func range_shape(radius: float) -> Shape2D:
 	var shape = RectangleShape2D.new()
@@ -26,13 +38,5 @@ func range_shape(radius: float) -> Shape2D:
 func range_position(radius: float) -> Vector2:
 	return Vector2(radius / 2 + 16.0, 0.0)
 
-func fire(bullet_factory: Callable):
-	var bullet = bullet_factory.call()
-	bullet.global_position = global_position + Vector2(24.0, -3.0).rotated(global_rotation)
-	bullet.global_rotation = global_rotation
-	bullet_fired.emit(bullet)
-
-	var bullet2 = bullet_factory.call()
-	bullet2.global_position = global_position + Vector2(24.0, 3.0).rotated(global_rotation)
-	bullet2.global_rotation = global_rotation
-	bullet_fired.emit(bullet2)
+func fire_points() -> Array[Node2D]:
+	return muzzles

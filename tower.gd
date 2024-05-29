@@ -32,31 +32,31 @@ func reset_state():
 
 var active = false
 var reloading = false
-var tower_range = TowerRange.new()
 var square = Square.new()
 var nearest_enemy = TowerNearestEnemy.new()
 
 func _ready():
-	var mouse_hover = TowerMouseHover.new()
-
 	reset_state()
+
 	square.size = Vector2(32.0, 32.0)
 	square.color = square_color
 	square.border_color = GameColor.BORDER
 	add_child(square)
 
-	rifle.bullet_fired.connect(func(bullet):
-		bullet.damage = stats.damage
-		bullet.distance_left = stats.radius - 24.0
-		add_sibling(bullet)
-	)
 	add_child(rifle)
 
+	var tower_reloading = TowerReloading.new()
+	tower_reloading.tower = self
+	add_child(tower_reloading)
+
+	var mouse_hover = TowerMouseHover.new()
 	mouse_hover.tower = self
 	add_child(mouse_hover)
 
-	mouse_hover.mouse_entered.connect(tower_range.show)
-	mouse_hover.mouse_exited.connect(tower_range.hide)
+	var tower_range = TowerRange.new()
+	tower_range.tower = self
+	mouse_hover.mouse_entered.connect(tower_range.show_range)
+	mouse_hover.mouse_exited.connect(tower_range.hide_range)
 	stats_changed.connect(tower_range.update)
 	rifle_changed.connect(tower_range.update)
 	add_child(tower_range)
@@ -76,6 +76,7 @@ func _ready():
 
 	var tower_rotate = TowerRotate.new()
 	tower_rotate.tower = self
+	tower_rotate.tower_range = tower_range
 	tower_rotate.mouse_hover = mouse_hover
 	add_child(tower_rotate)
 
@@ -85,29 +86,22 @@ func _ready():
 	nearest_enemy.tower_range = tower_range
 	add_child(nearest_enemy)
 
-func _process(_delta):
-	if Pause.paused:
-		return
+	var tower_fire = TowerFire.new()
+	tower_fire.tower = self
+	tower_fire.reloading = tower_reloading
+	tower_fire.nearest_enemy = nearest_enemy
+	add_child(tower_fire)
 
-	if !active:
-		return
+	tower_fire.aim_at.connect(func(enemy_position):
+		rifle.look_at_target(enemy_position)
+	)
 
-	var enemy = nearest_enemy.get_nearest_enemy()
-	if enemy == null:
-		return
-
-	rifle.target_in_range(enemy.global_position)
-
-	if !reloading:
-		rifle.fire(bullet_factory)	
-		reloading = true
-		await display_loadbar()
-		reloading = false
-
-func display_loadbar():
-	var loadbar = LoadBar.new()
-	loadbar.position = Vector2(0, 12.0)
-	loadbar.time = stats.speed
-	add_child(loadbar)
-	await loadbar.finished
-	loadbar.queue_free()
+	tower_fire.fire.connect(func():
+		for fire_point in rifle.fire_points():
+			var bullet = bullet_factory.call()
+			bullet.global_position = fire_point.global_position
+			bullet.global_rotation = fire_point.global_rotation
+			bullet.damage = stats.damage
+			bullet.distance_left = stats.radius - 24.0
+			add_sibling(bullet)
+	)
