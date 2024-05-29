@@ -9,7 +9,8 @@ signal start_wave(units: int)
 var all_cards = [
 	CardTower.new(),
 	CardTowerT2.new(),
-	CardTowerFreeze.new()
+	CardTowerFreeze.new(),
+	CardLaser.new()
 ]
 
 @onready var card_grid = $CenterContainer/CardGrid

@@ -2,10 +2,13 @@ extends Node2D
 class_name Bullet
 
 @export var damage := 3
-@export var direction := Vector2.ZERO
 @export var speed := 512.0
-# should be based on radius
 @export var distance_left := 100.0
+@export var pierce = 0
+@export var color := Color.RED:
+	set(value):
+		color = value
+		queue_redraw()
 
 var area = Area2D.new()
 
@@ -23,7 +26,10 @@ func _ready():
 	area.add_child(range_shape)
 
 	area.area_entered.connect(func(_body):
-		queue_free()
+		if pierce == 0:
+			queue_free()
+		else:
+			pierce -= 1
 	)
 
 func _process(delta):
@@ -36,4 +42,4 @@ func _process(delta):
 		queue_free()
 
 func _draw():
-	draw_circle(Vector2.ZERO, 2, Color.RED)
+	draw_circle(Vector2.ZERO, 2, self.color)
