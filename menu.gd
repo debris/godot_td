@@ -40,6 +40,9 @@ func update_health_label():
 	health_label.text = "HEALTH: " + str(health) + "/10"
 
 func _ready():
+	health_label.add_theme_color_override("font_color", GameColor.TEXT)
+	choose_one_label.add_theme_color_override("font_color", GameColor.TEXT)
+	wave_label.add_theme_color_override("font_color", GameColor.TEXT)
 	draw_cards()
 	update_health_label()
 

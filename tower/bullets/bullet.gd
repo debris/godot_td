@@ -5,7 +5,7 @@ class_name Bullet
 @export var speed := 512.0
 @export var distance_left := 100.0
 @export var pierce = 0
-@export var color := Color.RED:
+@export var color := GameColor.BULLET:
 	set(value):
 		color = value
 		queue_redraw()

@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bw1nndb1g075f"]
 
-[ext_resource type="Script" path="res://square.gd" id="1_g576n"]
+[ext_resource type="Script" path="res://slots/slot_damage.gd" id="1_hc48k"]
 [ext_resource type="Script" path="res://buffs/buff_damage.gd" id="2_fqiaa"]
 
 [node name="ExtraDamage" type="Node2D"]
-script = ExtResource("1_g576n")
-color = Color(0.290196, 0.486275, 1, 1)
+script = ExtResource("1_hc48k")
 
 [node name="BuffDamage" type="Area2D" parent="."]
 collision_layer = 16

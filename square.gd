@@ -19,4 +19,4 @@ class_name Square
 
 func _draw():
 	draw_rect(Rect2(-size / 2, size), color)
-	draw_rect(Rect2(-size / 2, size), border_color, false)
+	draw_rect(Rect2(-size / 2, size), border_color, false, 2.0)

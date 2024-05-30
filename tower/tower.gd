@@ -29,6 +29,7 @@ func reset_state():
 	set(value):
 		square_color = value
 		square.color = square_color
+		square.border_color = square_color
 
 var active = false
 var reloading = false
@@ -40,9 +41,11 @@ func _ready():
 
 	square.size = Vector2(32.0, 32.0)
 	square.color = square_color
-	square.border_color = GameColor.BORDER
+	square.border_color = square_color
 	add_child(square)
 
+	# rifle expands beyond borders. make all rifles be visible above other tower squares
+	rifle.z_index = 1
 	add_child(rifle)
 
 	var tower_reloading = TowerReloading.new()
@@ -71,6 +74,7 @@ func _ready():
 	stats_display.tower = self
 	mouse_hover.mouse_entered.connect(stats_display.show)
 	mouse_hover.mouse_exited.connect(stats_display.hide)
+	tree_exiting.connect(stats_display.hide)
 	stats_changed.connect(stats_display.refresh)
 	add_child(stats_display)
 

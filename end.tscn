@@ -5,7 +5,8 @@
 
 [node name="End" type="Node2D"]
 script = ExtResource("1_nn4t8")
-color = Color(0.596078, 0, 0, 1)
+color = Color(0.596078, 0, 0, 0)
+border_color = Color(0.0980392, 0.0980392, 0.188235, 1)
 
 [node name="DisplaySquareTooltip" type="Node" parent="."]
 script = ExtResource("2_06r2t")

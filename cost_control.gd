@@ -7,10 +7,6 @@ class_name CostControl
 		cost = value
 		update_icon()
 		update_label()
-@export var font_color := Color.BLACK:
-	set(value):
-		font_color = value
-		cost_label.add_theme_color_override("font_color", font_color)
 
 var color_rect = ColorRect.new()
 var cost_label := Label.new()
@@ -38,7 +34,7 @@ func _ready():
 
 	cost_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	cost_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	cost_label.add_theme_color_override("font_color", font_color)
+	cost_label.add_theme_color_override("font_color", GameColor.TEXT)
 	cost_label.size = Vector2(size.x - 24.0, 32.0)
 	resized.connect(func():
 		cost_label.size = Vector2(size.x - 24.0, 32.0)

@@ -18,7 +18,7 @@ func _ready():
 		assert(tooltip == null, "tooltip should be removed")
 		tooltip = Label.new()
 		tooltip.add_theme_font_size_override("font_size", 10)
-		tooltip.add_theme_color_override("font_color", Color.BLACK)
+		tooltip.add_theme_color_override("font_color", GameColor.TEXT)
 		tooltip.text = text
 		TooltipLayer.add_tooltip(tooltip)
 	)

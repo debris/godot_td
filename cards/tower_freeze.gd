@@ -14,5 +14,6 @@ func tower_constructor() -> Callable:
 			bullet.add_child(BulletModFreezing.new())
 			return bullet
 
-		tower.square_color = Color.BLUE
+		tower.square_color = GameColor.TOWER_ALTERNATIVE
+		#tower.square_color = Color.BLUE
 		return tower

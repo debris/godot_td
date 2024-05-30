@@ -40,14 +40,14 @@ func _ready():
 	var square = Square.new()
 	square.size = size
 	square.color = GameColor.ENEMY
-	square.border_color = GameColor.BORDER
+	square.border_color = GameColor.ENEMY_BORDER
 	add_child(square)
 
 	var head = Square.new()
 	head.size = Vector2(8.0, 6.0)
 	head.position = Vector2(0.0, -8.0)
 	head.color = GameColor.ENEMY
-	head.border_color = GameColor.BORDER
+	head.border_color = GameColor.ENEMY_BORDER
 	square.add_child(head)
 
 	area.collision_layer = 0

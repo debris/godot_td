@@ -11,7 +11,8 @@ signal card_pressed(card: Card)
 		update_cost()
 		update_stats()
 
-var color_rect = ColorRect.new()
+#var color_rect = ColorRect.new()
+var color_rect = FramedRect.new()
 var tower: Node2D = null
 var cost_control: CostControl
 var stats_control = StatsControl.new()

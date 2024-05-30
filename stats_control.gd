@@ -33,17 +33,17 @@ func _ready():
 	grid.add_theme_constant_override("v_separation", 0)
 	add_child(grid)
 
-	as_label.add_theme_color_override("font_color", Color.BLACK)
+	as_label.add_theme_color_override("font_color", GameColor.TEXT)
 	as_label.add_theme_font_size_override("font_size", 10)
 	update_as_label()
 	grid.add_child(as_label)
 
-	dmg_label.add_theme_color_override("font_color", Color.BLACK)
+	dmg_label.add_theme_color_override("font_color", GameColor.TEXT)
 	dmg_label.add_theme_font_size_override("font_size", 10)
 	update_dmg_label()
 	grid.add_child(dmg_label)
 
-	desc_label.add_theme_color_override("font_color", Color.BLACK)
+	desc_label.add_theme_color_override("font_color", GameColor.TEXT)
 	desc_label.add_theme_font_size_override("font_size", 10)
 	desc_label.text = description
 	grid.add_child(desc_label)
