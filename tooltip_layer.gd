@@ -12,6 +12,7 @@ func _ready():
 	add_child(color_rect)
 	
 	grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	grid.theme = preload("res://game_theme.tres")
 	grid.item_rect_changed.connect(func():
 		if !grid.size.is_zero_approx():
 			color_rect.position = grid.position - Vector2(10.0, 10.0)
@@ -22,8 +23,12 @@ func _ready():
 	add_child(grid)
 
 func add_tooltip(tooltip):
-	grid.global_position = get_viewport().get_mouse_position() + Vector2(32.0, 32.0)
+	grid.global_position = get_viewport().get_mouse_position() + Vector2(10.0, 10.0) + Vector2(16.0, 16.0)
 	tooltip.tree_exited.connect(func():
 		grid.size = grid.custom_minimum_size
 	)
 	grid.add_child(tooltip)
+
+func _process(_delta):
+	grid.global_position = get_viewport().get_mouse_position() + Vector2(10.0, 10.0) + Vector2(16.0, 16.0)
+	

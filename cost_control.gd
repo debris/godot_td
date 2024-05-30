@@ -34,7 +34,6 @@ func _ready():
 
 	cost_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	cost_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	cost_label.add_theme_color_override("font_color", GameColor.TEXT)
 	cost_label.size = Vector2(size.x - 24.0, 32.0)
 	resized.connect(func():
 		cost_label.size = Vector2(size.x - 24.0, 32.0)

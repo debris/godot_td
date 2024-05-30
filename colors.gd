@@ -29,7 +29,7 @@ static var TOWER_RIFLE := Color.html("#eba254")
 static var TOWER := Color.html("#f5d689")
 static var TOWER_ALTERNATIVE := Color.html("#2f729e")
 static var TOWER_BORDER := Color.html("#f5d689")
-static var BULLET := Color.html("#eba254")
+static var BULLET := Color.html("#fff5d9")
 
 static var ENEMY := Color.html("#f5d689")
 static var ENEMY_BORDER := Color.html("#eba254")

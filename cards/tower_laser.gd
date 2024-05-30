@@ -4,6 +4,7 @@ class_name CardLaser
 
 func _init():
 	cost = CostUnit.new(2)
+	name = "Laser"
 
 func tower_constructor() -> Callable:
 	return func():

@@ -13,13 +13,13 @@ var all_cards = [
 	CardLaser.new()
 ]
 
-@onready var card_grid = $CenterContainer/CardGrid
-@onready var wave_label: Label = $Wave
-@onready var choose_one_label: Label = $ChooseOneLabel
-@onready var right_click_label: Label = $RightClickLabel
-@onready var next_wave_units: CostControl = $NextWaveUnits
-@onready var countdown: Countdown = $Countdown
-@onready var health_label: Label = $HealthLabel
+@onready var card_grid = $Container/CenterContainer/CardGrid
+@onready var wave_label: Label = $Container/Wave
+@onready var choose_one_label: Label = $Container/ChooseOneLabel
+@onready var right_click_label: Label = $Container/RightClickLabel
+@onready var next_wave_units: CostControl = $Container/NextWaveUnits
+@onready var countdown: Countdown = $Container/Countdown
+@onready var health_label: Label = $Container/HealthLabel
 
 var wave := 1:
 	set(value):
@@ -40,9 +40,6 @@ func update_health_label():
 	health_label.text = "HEALTH: " + str(health) + "/10"
 
 func _ready():
-	health_label.add_theme_color_override("font_color", GameColor.TEXT)
-	choose_one_label.add_theme_color_override("font_color", GameColor.TEXT)
-	wave_label.add_theme_color_override("font_color", GameColor.TEXT)
 	draw_cards()
 	update_health_label()
 

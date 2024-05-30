@@ -4,6 +4,7 @@ class_name CardTowerT2
 
 func _init():
 	cost = CostUnit.new(1)
+	name = "Double Penetrator"
 
 func tower_constructor() -> Callable:
 	return func():

@@ -4,6 +4,7 @@ class_name CardTowerFreeze
 
 func _init():
 	cost = CostUnit.new(2)
+	name = "Freezer"
 
 func tower_constructor() -> Callable:
 	return func():
@@ -15,5 +16,4 @@ func tower_constructor() -> Callable:
 			return bullet
 
 		tower.square_color = GameColor.TOWER_ALTERNATIVE
-		#tower.square_color = Color.BLUE
 		return tower

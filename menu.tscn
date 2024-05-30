@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ces6c8kd16kom"]
+[gd_scene load_steps=7 format=3 uid="uid://ces6c8kd16kom"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_v7074"]
+[ext_resource type="Theme" uid="uid://bjipnkhs80l14" path="res://game_theme.tres" id="2_6jfq1"]
 [ext_resource type="Script" path="res://cost_control.gd" id="2_boe57"]
 [ext_resource type="Script" path="res://costs/unit.gd" id="3_l0re6"]
 [ext_resource type="Script" path="res://countdown.gd" id="4_31rlm"]
@@ -12,7 +13,17 @@ value = 0
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_v7074")
 
-[node name="Wave" type="Label" parent="."]
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_6jfq1")
+
+[node name="Wave" type="Label" parent="Container"]
 offset_top = 16.0
 offset_right = 1152.0
 offset_bottom = 48.0
@@ -21,15 +32,15 @@ text = "WAVE: 1/10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ToEmit" type="Label" parent="."]
+[node name="ToEmit" type="Label" parent="Container"]
 visible = false
 offset_top = 23.0
-offset_right = 42.0
+offset_right = 74.0
 offset_bottom = 46.0
 text = "to emit:
 "
 
-[node name="Start" type="Button" parent="."]
+[node name="Start" type="Button" parent="Container"]
 visible = false
 offset_left = 16.0
 offset_top = 96.0
@@ -38,7 +49,7 @@ offset_bottom = 128.0
 focus_mode = 0
 text = "Start"
 
-[node name="Tower" type="Button" parent="."]
+[node name="Tower" type="Button" parent="Container"]
 visible = false
 offset_left = 16.0
 offset_top = 136.0
@@ -47,16 +58,16 @@ offset_bottom = 168.0
 focus_mode = 0
 text = "Tower"
 
-[node name="Tower2" type="Button" parent="."]
+[node name="Tower2" type="Button" parent="Container"]
 visible = false
 offset_left = 16.0
 offset_top = 176.0
-offset_right = 73.0
+offset_right = 82.0
 offset_bottom = 208.0
 focus_mode = 0
 text = "Tower2"
 
-[node name="Remove" type="Button" parent="."]
+[node name="Remove" type="Button" parent="Container"]
 visible = false
 offset_left = 16.0
 offset_top = 216.0
@@ -65,7 +76,7 @@ offset_bottom = 247.0
 focus_mode = 0
 text = "Remove"
 
-[node name="Recenter" type="Button" parent="."]
+[node name="Recenter" type="Button" parent="Container"]
 offset_left = 1096.0
 offset_top = 16.0
 offset_right = 1128.0
@@ -73,7 +84,7 @@ offset_bottom = 48.0
 focus_mode = 0
 text = "*"
 
-[node name="ChooseOneLabel" type="Label" parent="."]
+[node name="ChooseOneLabel" type="Label" parent="Container"]
 offset_left = 216.0
 offset_top = 608.0
 offset_right = 368.0
@@ -82,7 +93,7 @@ text = "CHOOSE ONE"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="RightClickLabel" type="Label" parent="."]
+[node name="RightClickLabel" type="Label" parent="Container"]
 offset_top = 608.0
 offset_right = 1152.0
 offset_bottom = 632.0
@@ -90,18 +101,18 @@ text = "RIGHT-CLICK TO CANCEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-offset_top = 584.0
+[node name="CenterContainer" type="CenterContainer" parent="Container"]
+offset_top = 556.0
 offset_right = 1152.0
-offset_bottom = 784.0
+offset_bottom = 756.0
 metadata/_edit_group_ = true
 
-[node name="CardGrid" type="GridContainer" parent="CenterContainer"]
+[node name="CardGrid" type="GridContainer" parent="Container/CenterContainer"]
 layout_mode = 2
-theme_override_constants/h_separation = 16
+theme_override_constants/h_separation = 10
 columns = 3
 
-[node name="NextWaveUnits" type="Control" parent="."]
+[node name="NextWaveUnits" type="Control" parent="Container"]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 3
 anchors_preset = 0
@@ -109,11 +120,11 @@ offset_top = 16.0
 offset_right = 120.0
 offset_bottom = 48.0
 mouse_filter = 2
+theme = ExtResource("2_6jfq1")
 script = ExtResource("2_boe57")
 cost = SubResource("Resource_hjraa")
-font_color = Color(1, 1, 1, 1)
 
-[node name="Countdown" type="Label" parent="."]
+[node name="Countdown" type="Label" parent="Container"]
 offset_top = 600.0
 offset_right = 1152.0
 offset_bottom = 632.0
@@ -122,7 +133,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_31rlm")
 
-[node name="HealthLabel" type="Label" parent="."]
+[node name="HealthLabel" type="Label" parent="Container"]
 offset_left = 8.0
 offset_top = 56.0
 offset_right = 128.0
@@ -131,8 +142,8 @@ text = "HEALTH: 10/10"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Tower" to="." method="_on_tower_pressed"]
-[connection signal="pressed" from="Tower2" to="." method="_on_tower_2_pressed"]
-[connection signal="pressed" from="Remove" to="." method="_on_remove_pressed"]
-[connection signal="pressed" from="Recenter" to="." method="_on_recenter_pressed"]
+[connection signal="pressed" from="Container/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Container/Tower" to="." method="_on_tower_pressed"]
+[connection signal="pressed" from="Container/Tower2" to="." method="_on_tower_2_pressed"]
+[connection signal="pressed" from="Container/Remove" to="." method="_on_remove_pressed"]
+[connection signal="pressed" from="Container/Recenter" to="." method="_on_recenter_pressed"]
