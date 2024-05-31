@@ -6,8 +6,6 @@ var grid := GridContainer.new()
 func _ready():
 
 	var color_rect = FramedRect.new()
-	#var color_rect = ColorRect.new()
-	#color_rect.color = GameColor.BACKGROUND
 	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(color_rect)
 	

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ru5njklu3mwq"
-path="res://.godot/imported/wheelchair_move.svg-d5e18c638fa8a72e672610cb0c3d7c4e.ctex"
+path="res://.godot/imported/wheelchair_move.svg-544e85be3d2a985a16fd4a71335c7d1e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wheelchair_move.svg"
-dest_files=["res://.godot/imported/wheelchair_move.svg-d5e18c638fa8a72e672610cb0c3d7c4e.ctex"]
+source_file="res://res/wheelchair_move.svg"
+dest_files=["res://.godot/imported/wheelchair_move.svg-544e85be3d2a985a16fd4a71335c7d1e.ctex"]
 
 [params]
 

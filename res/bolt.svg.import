@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cigtj3niaosut"
-path="res://.godot/imported/poo.svg-9095b445a20f19ff892fb8111820a07c.ctex"
+uid="uid://ckrgnbqfs6xkh"
+path="res://.godot/imported/bolt.svg-b55b469f99eed89de77324e35c9fa0b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://poo.svg"
-dest_files=["res://.godot/imported/poo.svg-9095b445a20f19ff892fb8111820a07c.ctex"]
+source_file="res://res/bolt.svg"
+dest_files=["res://.godot/imported/bolt.svg-b55b469f99eed89de77324e35c9fa0b6.ctex"]
 
 [params]
 

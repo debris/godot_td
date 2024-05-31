@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmwuegrfunxnd"]
 
-[ext_resource type="Texture2D" uid="uid://cnh0po8ob1w0s" path="res://wheelchair.svg" id="2_vg2h1"]
-[ext_resource type="Texture2D" uid="uid://ru5njklu3mwq" path="res://wheelchair_move.svg" id="3_4qm07"]
+[ext_resource type="Texture2D" uid="uid://cnh0po8ob1w0s" path="res://res/wheelchair.svg" id="2_vg2h1"]
+[ext_resource type="Texture2D" uid="uid://ru5njklu3mwq" path="res://res/wheelchair_move.svg" id="3_4qm07"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fy8vr"]
 animations = [{

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnh0po8ob1w0s"
-path="res://.godot/imported/wheelchair.svg-4585a7376ff9755334693c0e57c5aa67.ctex"
+uid="uid://bhctftlpxyo45"
+path="res://.godot/imported/fist.svg-ea6cdfbd42825ed154b5896241ee8a92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wheelchair.svg"
-dest_files=["res://.godot/imported/wheelchair.svg-4585a7376ff9755334693c0e57c5aa67.ctex"]
+source_file="res://res/fist.svg"
+dest_files=["res://.godot/imported/fist.svg-ea6cdfbd42825ed154b5896241ee8a92.ctex"]
 
 [params]
 

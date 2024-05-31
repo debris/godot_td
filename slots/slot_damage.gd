@@ -9,7 +9,7 @@ func _ready():
 	add_child(square)
 
 	var sprite = Sprite2D.new()
-	sprite.texture = preload("res://fist.svg")
+	sprite.texture = preload("res://res/fist.svg")
 	sprite.scale = Vector2(0.040, 0.040)
 	sprite.modulate = GameColor.BUFF
 	add_child(sprite)

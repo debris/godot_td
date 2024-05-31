@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://owastl2m7lx5"
-path="res://.godot/imported/LCDM2U__.TTF-438b993df60619187baec0e12c017ec0.fontdata"
+path="res://.godot/imported/LCDM2U__.TTF-6401b4302da24f5ecbdab4b31231c6e1.fontdata"
 
 [deps]
 
-source_file="res://LCDM2U__.TTF"
-dest_files=["res://.godot/imported/LCDM2U__.TTF-438b993df60619187baec0e12c017ec0.fontdata"]
+source_file="res://res/LCDM2U__.TTF"
+dest_files=["res://.godot/imported/LCDM2U__.TTF-6401b4302da24f5ecbdab4b31231c6e1.fontdata"]
 
 [params]
 

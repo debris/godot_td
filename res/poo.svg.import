@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhctftlpxyo45"
-path="res://.godot/imported/fist.svg-d3a573cab2f663055fcd28940f973d03.ctex"
+uid="uid://cigtj3niaosut"
+path="res://.godot/imported/poo.svg-87d7e52a3fcd22a25290acfd9c3ec0e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fist.svg"
-dest_files=["res://.godot/imported/fist.svg-d3a573cab2f663055fcd28940f973d03.ctex"]
+source_file="res://res/poo.svg"
+dest_files=["res://.godot/imported/poo.svg-87d7e52a3fcd22a25290acfd9c3ec0e1.ctex"]
 
 [params]
 

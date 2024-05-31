@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://bjipnkhs80l14"]
 
-[ext_resource type="FontFile" uid="uid://owastl2m7lx5" path="res://LCDM2U__.TTF" id="1_p8eet"]
+[ext_resource type="FontFile" uid="uid://owastl2m7lx5" path="res://res/LCDM2U__.TTF" id="1_p8eet"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4uwql"]
 

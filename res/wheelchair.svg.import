@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckrgnbqfs6xkh"
-path="res://.godot/imported/bolt.svg-cfd79b552423c48fb248a1c7d53357d4.ctex"
+uid="uid://cnh0po8ob1w0s"
+path="res://.godot/imported/wheelchair.svg-d9f196df52ff41fa6012668d42028198.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bolt.svg"
-dest_files=["res://.godot/imported/bolt.svg-cfd79b552423c48fb248a1c7d53357d4.ctex"]
+source_file="res://res/wheelchair.svg"
+dest_files=["res://.godot/imported/wheelchair.svg-d9f196df52ff41fa6012668d42028198.ctex"]
 
 [params]
 

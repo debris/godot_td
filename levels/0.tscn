@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://bx18yki0ouqgv"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_u7ru1"]
-[ext_resource type="PackedScene" uid="uid://bf5nocw5awdce" path="res://pathsquare.tscn" id="1_xupe3"]
+[ext_resource type="PackedScene" uid="uid://bf5nocw5awdce" path="res://slots/pathsquare.tscn" id="1_xupe3"]
 [ext_resource type="PackedScene" uid="uid://inuxte1qvy32" path="res://slots/slot_normal.tscn" id="2_52fq7"]
-[ext_resource type="PackedScene" uid="uid://fvy4lubo2vp0" path="res://slots/extra_range.tscn" id="3_s6v6j"]
-[ext_resource type="PackedScene" uid="uid://dqmi5piellnn6" path="res://end.tscn" id="4_lqfw5"]
-[ext_resource type="PackedScene" uid="uid://buv1yqbkffnj7" path="res://start.tscn" id="5_4xxgm"]
-[ext_resource type="PackedScene" uid="uid://c8rqhrhqe4kjx" path="res://slots/extra_speed.tscn" id="7_7nkju"]
-[ext_resource type="PackedScene" uid="uid://bw1nndb1g075f" path="res://slots/extra_damage.tscn" id="7_obhqf"]
+[ext_resource type="PackedScene" uid="uid://fvy4lubo2vp0" path="res://slots/slot_range.tscn" id="3_s6v6j"]
+[ext_resource type="PackedScene" uid="uid://dqmi5piellnn6" path="res://slots/end.tscn" id="4_lqfw5"]
+[ext_resource type="PackedScene" uid="uid://buv1yqbkffnj7" path="res://slots/start.tscn" id="5_4xxgm"]
+[ext_resource type="PackedScene" uid="uid://c8rqhrhqe4kjx" path="res://slots/slot_speed.tscn" id="7_7nkju"]
+[ext_resource type="PackedScene" uid="uid://bw1nndb1g075f" path="res://slots/slot_damage.tscn" id="7_obhqf"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_cdiqi"]
 scenes/1/scene = ExtResource("1_xupe3")

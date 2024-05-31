@@ -39,11 +39,11 @@ func _ready():
 
 
 	var sprite = Sprite2D.new()
-	sprite.texture = preload("res://poo.svg")
+	sprite.texture = preload("res://res/poo.svg")
 	sprite.scale = Vector2(0.040, 0.040)
 	sprite.modulate = GameColor.BUFF
 	add_child(sprite)
-	#var sprite = preload("res://wheelchair.tscn").instantiate()
+	#var sprite = preload("res://enemies/wheelchair.tscn").instantiate()
 	#sprite.modulate = GameColor.BUFF
 	#add_child(sprite)
 
