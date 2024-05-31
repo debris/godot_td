@@ -25,8 +25,6 @@ func _ready():
 	range_shape.shape.radius = 3
 	area.add_child(range_shape)
 
-	#distance_left -= position.distance_to(Vector2.ZERO)
-
 	area.area_entered.connect(func(_body):
 		if pierce == 0:
 			queue_free()

@@ -4,11 +4,12 @@ class_name CardTowerFreeze
 
 func _init():
 	cost = CostUnit.new(2)
-	name = "Freezer"
 
 func tower_constructor() -> Callable:
 	return func():
 		var tower = Tower.new()
+		tower.tower_name = "Freezer"
+		tower.description = "freezing bullets"
 
 		tower.bullet_factory = func():
 			var bullet = Bullet.new()

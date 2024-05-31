@@ -10,7 +10,6 @@ signal card_pressed(card: Card)
 		update_tower()
 		update_cost()
 		update_stats()
-		update_name_label()
 
 var color_rect = FramedRect.new()
 var tower: Node2D = null
@@ -41,12 +40,10 @@ func update_cost():
 	color_rect.add_child(cost_control)
 
 func update_stats():
+	name_label.text = tower.tower_name
 	stats_control.attack_speed = tower.stats.speed
 	stats_control.damage = tower.stats.damage
-	stats_control.description = ""
-
-func update_name_label():
-	name_label.text = card.name
+	stats_control.description = tower.description
 
 func _ready():
 	custom_minimum_size = Vector2(120.0, 180.0)
@@ -73,7 +70,6 @@ func _ready():
 	update_tower()
 	update_cost()
 	update_stats()
-	update_name_label()
 
 	color_rect.mouse_entered.connect(func():
 		hovered = true

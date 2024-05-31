@@ -7,6 +7,8 @@ signal rifle_changed
 
 # stats are base stats multiplied by buffs
 # TODO: support changing base stats after the tower in placed on the map
+@export var tower_name: String
+@export var description: String
 @export var base_stats := TowerStats.new()
 @export var stats: TowerStats = TowerStats.new():
 	set(value):
@@ -106,6 +108,8 @@ func _ready():
 			bullet.global_position = fire_point.global_position
 			bullet.global_rotation = fire_point.global_rotation
 			bullet.damage = stats.damage
+			# 8.0 is far outside the border of the tile the fire_point is
+			# TODO: calculate it dynamically
 			bullet.distance_left = stats.radius - 8.0
 			add_sibling(bullet)
 	)

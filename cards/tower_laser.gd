@@ -4,11 +4,11 @@ class_name CardLaser
 
 func _init():
 	cost = CostUnit.new(2)
-	name = "Laser"
 
 func tower_constructor() -> Callable:
 	return func():
 		var tower = Tower.new()
+		tower.tower_name = "Laser"
 
 		tower.rifle = RifleLaser.new()
 		tower.base_stats.radius = 128.0

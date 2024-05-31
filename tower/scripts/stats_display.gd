@@ -13,6 +13,7 @@ func show():
 	stats_control = StatsControl.new()
 	stats_control.attack_speed = tower.stats.speed
 	stats_control.damage = tower.stats.damage
+	stats_control.description = tower.description
 	TooltipLayer.add_tooltip(stats_control)
 
 func hide():
@@ -24,3 +25,4 @@ func refresh():
 	if stats_control != null:
 		stats_control.attack_speed = tower.stats.speed
 		stats_control.damage = tower.stats.damage
+		stats_control.description = tower.description

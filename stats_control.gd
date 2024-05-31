@@ -48,14 +48,17 @@ func _ready():
 	add_child(grid)
 
 	as_label.add_theme_font_size_override("font_size", 10)
+	as_label.add_theme_color_override("font_color", GameColor.TEXT_ALTERNATIVE2)
 	update_as_label()
 	grid.add_child(as_label)
 
 	dmg_label.add_theme_font_size_override("font_size", 10)
+	dmg_label.add_theme_color_override("font_color", GameColor.TEXT_ALTERNATIVE2)
 	update_dmg_label()
 	grid.add_child(dmg_label)
 
 	desc_label.add_theme_font_size_override("font_size", 10)
+	desc_label.add_theme_color_override("font_color", GameColor.TEXT_ALTERNATIVE)
 	desc_label.text = description
 	update_desc_label()
 	grid.add_child(desc_label)
