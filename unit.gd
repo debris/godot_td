@@ -37,18 +37,15 @@ func _ready():
 
 	var size = Vector2(16.0, 16.0)
 
-	var square = Square.new()
-	square.size = size
-	square.color = GameColor.ENEMY
-	square.border_color = GameColor.ENEMY_BORDER
-	add_child(square)
 
-	var head = Square.new()
-	head.size = Vector2(8.0, 6.0)
-	head.position = Vector2(0.0, -8.0)
-	head.color = GameColor.ENEMY
-	head.border_color = GameColor.ENEMY_BORDER
-	square.add_child(head)
+	var sprite = Sprite2D.new()
+	sprite.texture = preload("res://poo.svg")
+	sprite.scale = Vector2(0.040, 0.040)
+	sprite.modulate = GameColor.BUFF
+	add_child(sprite)
+	#var sprite = preload("res://wheelchair.tscn").instantiate()
+	#sprite.modulate = GameColor.BUFF
+	#add_child(sprite)
 
 	area.collision_layer = 0
 	area.collision_mask = 0

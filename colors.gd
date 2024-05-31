@@ -35,3 +35,4 @@ static var ENEMY := Color.html("#f5d689")
 static var ENEMY_BORDER := Color.html("#eba254")
 
 static var FREEZE := Color.html("#2f729e")
+static var BAR := Color.html("#fff5d9")

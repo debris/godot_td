@@ -3,7 +3,7 @@ class_name Bar
 
 signal finished
 
-@export var color := Color.WHITE
+@export var color := GameColor.BAR
 
 @export var size := Vector2(24.0, 4.0):
 	set(v):

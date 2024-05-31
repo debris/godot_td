@@ -39,7 +39,7 @@ var nearest_enemy = TowerNearestEnemy.new()
 func _ready():
 	reset_state()
 
-	square.size = Vector2(32.0, 32.0)
+	square.size = Vector2(28.0, 28.0)
 	square.color = square_color
 	square.border_color = square_color
 	add_child(square)

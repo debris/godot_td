@@ -46,6 +46,7 @@ func _ready():
 
 	visual_shape.color = color
 	visual_shape.visible = false
+	visual_shape.z_index = 1
 	add_child(visual_shape)
 
 	area.area_entered.connect(func(body):
