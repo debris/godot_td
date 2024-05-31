@@ -1,0 +1,23 @@
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://dohvnqe8ws2ca"]
+
+[ext_resource type="PackedScene" uid="uid://bf5nocw5awdce" path="res://slots/pathsquare.tscn" id="1_2kvdb"]
+[ext_resource type="PackedScene" uid="uid://inuxte1qvy32" path="res://slots/slot_normal.tscn" id="2_hsoas"]
+[ext_resource type="PackedScene" uid="uid://fvy4lubo2vp0" path="res://slots/slot_range.tscn" id="3_jjxoi"]
+[ext_resource type="PackedScene" uid="uid://dqmi5piellnn6" path="res://slots/end.tscn" id="4_re0bl"]
+[ext_resource type="PackedScene" uid="uid://buv1yqbkffnj7" path="res://slots/start.tscn" id="5_5g0gn"]
+[ext_resource type="PackedScene" uid="uid://c8rqhrhqe4kjx" path="res://slots/slot_speed.tscn" id="6_kurm6"]
+[ext_resource type="PackedScene" uid="uid://bw1nndb1g075f" path="res://slots/slot_damage.tscn" id="7_nr84g"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_cdiqi"]
+scenes/1/scene = ExtResource("1_2kvdb")
+scenes/2/scene = ExtResource("2_hsoas")
+scenes/3/scene = ExtResource("3_jjxoi")
+scenes/4/scene = ExtResource("4_re0bl")
+scenes/5/scene = ExtResource("5_5g0gn")
+scenes/6/scene = ExtResource("6_kurm6")
+scenes/7/scene = ExtResource("7_nr84g")
+
+[resource]
+tile_size = Vector2i(32, 32)
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetScenesCollectionSource_cdiqi")

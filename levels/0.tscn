@@ -1,27 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx18yki0ouqgv"]
+[gd_scene load_steps=4 format=3 uid="uid://bx18yki0ouqgv"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_u7ru1"]
-[ext_resource type="PackedScene" uid="uid://bf5nocw5awdce" path="res://slots/pathsquare.tscn" id="1_xupe3"]
-[ext_resource type="PackedScene" uid="uid://inuxte1qvy32" path="res://slots/slot_normal.tscn" id="2_52fq7"]
-[ext_resource type="PackedScene" uid="uid://fvy4lubo2vp0" path="res://slots/slot_range.tscn" id="3_s6v6j"]
-[ext_resource type="PackedScene" uid="uid://dqmi5piellnn6" path="res://slots/end.tscn" id="4_lqfw5"]
-[ext_resource type="PackedScene" uid="uid://buv1yqbkffnj7" path="res://slots/start.tscn" id="5_4xxgm"]
-[ext_resource type="PackedScene" uid="uid://c8rqhrhqe4kjx" path="res://slots/slot_speed.tscn" id="7_7nkju"]
-[ext_resource type="PackedScene" uid="uid://bw1nndb1g075f" path="res://slots/slot_damage.tscn" id="7_obhqf"]
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_cdiqi"]
-scenes/1/scene = ExtResource("1_xupe3")
-scenes/2/scene = ExtResource("2_52fq7")
-scenes/3/scene = ExtResource("3_s6v6j")
-scenes/4/scene = ExtResource("4_lqfw5")
-scenes/5/scene = ExtResource("5_4xxgm")
-scenes/6/scene = ExtResource("7_7nkju")
-scenes/7/scene = ExtResource("7_obhqf")
-
-[sub_resource type="TileSet" id="TileSet_or4lg"]
-tile_size = Vector2i(32, 32)
-navigation_layer_0/layers = 1
-sources/0 = SubResource("TileSetScenesCollectionSource_cdiqi")
+[ext_resource type="TileSet" uid="uid://dohvnqe8ws2ca" path="res://levels/game_tiles.tres" id="2_tkghn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dqvft"]
 vertices = PackedVector2Array(650, 106, 918, 106, 918, 150, 694, 150, 650, 394, 694, 438, 298, 438, 342, 394, 298, 150, 342, 106, 74, 106, 74, 150)
@@ -33,7 +13,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 script = ExtResource("1_u7ru1")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_or4lg")
+tile_set = ExtResource("2_tkghn")
 format = 2
 layer_0/name = "path"
 layer_0/tile_data = PackedInt32Array(196611, 0, 65536, 196612, 0, 65536, 196613, 0, 65536, 196614, 0, 65536, 262147, 0, 65536, 262148, 0, 65536, 262149, 0, 65536, 262150, 0, 65536, 196615, 0, 65536, 262151, 0, 65536, 262152, 0, 65536, 262153, 0, 65536, 262154, 0, 65536, 196617, 0, 65536, 196616, 0, 65536, 196618, 0, 65536, 327689, 0, 65536, 327690, 0, 65536, 393226, 0, 65536, 458762, 0, 65536, 458761, 0, 65536, 393225, 0, 65536, 524297, 0, 65536, 589833, 0, 65536, 589834, 0, 65536, 524298, 0, 65536, 655370, 0, 65536, 720906, 0, 65536, 720905, 0, 65536, 655369, 0, 65536, 786441, 0, 65536, 851977, 0, 65536, 851978, 0, 65536, 786442, 0, 65536, 786443, 0, 65536, 851979, 0, 65536, 851980, 0, 65536, 786445, 0, 65536, 786446, 0, 65536, 851982, 0, 65536, 851981, 0, 65536, 851983, 0, 65536, 786447, 0, 65536, 851984, 0, 65536, 851985, 0, 65536, 786449, 0, 65536, 786448, 0, 65536, 786450, 0, 65536, 851986, 0, 65536, 851987, 0, 65536, 786451, 0, 65536, 786452, 0, 65536, 786453, 0, 65536, 851989, 0, 65536, 851988, 0, 65536, 720916, 0, 65536, 655380, 0, 65536, 589844, 0, 65536, 524308, 0, 65536, 458772, 0, 65536, 393236, 0, 65536, 327700, 0, 65536, 262164, 0, 65536, 196628, 0, 65536, 196629, 0, 65536, 262165, 0, 65536, 327701, 0, 65536, 393237, 0, 65536, 458773, 0, 65536, 524309, 0, 65536, 589845, 0, 65536, 655381, 0, 65536, 720917, 0, 65536, 262166, 0, 65536, 262167, 0, 65536, 262168, 0, 65536, 262169, 0, 65536, 262170, 0, 65536, 262171, 0, 65536, 196635, 0, 65536, 196634, 0, 65536, 196633, 0, 65536, 196632, 0, 65536, 196631, 0, 65536, 196630, 0, 65536, 786444, 0, 65536)

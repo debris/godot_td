@@ -1,12 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://d2ikrtj6tb1ll"]
 
 [ext_resource type="Script" path="res://background.gd" id="1_fqr3w"]
-[ext_resource type="PackedScene" uid="uid://bx18yki0ouqgv" path="res://levels/0.tscn" id="2_x3rvw"]
+[ext_resource type="Script" path="res://game.gd" id="1_ulqkh"]
 [ext_resource type="Script" path="res://camera_move.gd" id="3_qopqs"]
 [ext_resource type="Script" path="res://camera_center.gd" id="4_yw2ft"]
 [ext_resource type="PackedScene" uid="uid://ces6c8kd16kom" path="res://menu.tscn" id="5_wn763"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_ulqkh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -18,8 +19,6 @@ size = Vector2(1152, 648)
 [node name="Map" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="0" parent="Map" instance=ExtResource("2_x3rvw")]
-
 [node name="Camera2D" type="Camera2D" parent="Map"]
 position = Vector2(576, 324)
 
@@ -28,15 +27,8 @@ script = ExtResource("3_qopqs")
 
 [node name="CameraCenter" type="Node" parent="Map/Camera2D" node_paths=PackedStringArray("level")]
 script = ExtResource("4_yw2ft")
-level = NodePath("../../0")
+level = NodePath("")
 
 [node name="Menu" parent="Map" instance=ExtResource("5_wn763")]
 
-[connection signal="cancel_card" from="Map/0" to="Map/Menu" method="reset_cards"]
-[connection signal="card_used" from="Map/0" to="Map/Menu" method="show_next_wave_button"]
-[connection signal="life_lost" from="Map/0" to="Map/Menu" method="_on__life_lost"]
-[connection signal="wave_finished" from="Map/0" to="Map/Menu" method="_on__wave_finished"]
-[connection signal="card_pressed" from="Map/Menu" to="Map/0" method="_on_menu_card_pressed"]
 [connection signal="recenter" from="Map/Menu" to="Map/Camera2D/CameraCenter" method="recenter"]
-[connection signal="remove" from="Map/Menu" to="Map/0" method="_on_menu_remove"]
-[connection signal="start_wave" from="Map/Menu" to="Map/0" method="_on_menu_start_wave"]
