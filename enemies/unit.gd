@@ -63,6 +63,10 @@ func _ready():
 		# hit by the bullet
 		if "damage" in bullet:
 			health.current -= bullet.damage
+			var hitnumber = Hitnumber.new()
+			hitnumber.number = bullet.damage
+			hitnumber.global_position = bullet.global_position
+			add_sibling(hitnumber)
 	)
 
 	health.death.connect(func():
