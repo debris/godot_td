@@ -22,7 +22,7 @@ func _ready():
 
 func range_shape(radius: float) -> Shape2D:
 	var shape = CircleShape2D.new()
-	shape.radius = radius
+	shape.radius = radius + 16.0
 	return shape
 
 func look_at_target(target: Vector2):

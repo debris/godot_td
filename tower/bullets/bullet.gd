@@ -22,8 +22,10 @@ func _ready():
 	var range_shape = CollisionShape2D.new()
 	range_shape.shape = CircleShape2D.new()
 	# TODO: update if it changes with parent
-	range_shape.shape.radius = 2
+	range_shape.shape.radius = 3
 	area.add_child(range_shape)
+
+	#distance_left -= position.distance_to(Vector2.ZERO)
 
 	area.area_entered.connect(func(_body):
 		if pierce == 0:
@@ -35,11 +37,12 @@ func _ready():
 func _process(delta):
 	if Pause.paused:
 		return
-	
-	position = position.move_toward(Vector2(24.0, 0).rotated(rotation) * Vector2(1000.0, 1000.0), speed * delta)
+
+	position = position.move_toward(position + Vector2(distance_left, 0).rotated(global_rotation), speed * delta)
 	distance_left -= speed * delta
 	if distance_left <= 0.0:
+		#speed = 0
 		queue_free()
 
 func _draw():
-	draw_circle(Vector2.ZERO, 2, self.color)
+	draw_circle(Vector2.ZERO, 3, self.color)

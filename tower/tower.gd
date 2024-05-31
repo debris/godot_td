@@ -106,6 +106,6 @@ func _ready():
 			bullet.global_position = fire_point.global_position
 			bullet.global_rotation = fire_point.global_rotation
 			bullet.damage = stats.damage
-			bullet.distance_left = stats.radius - 24.0
+			bullet.distance_left = stats.radius - 8.0
 			add_sibling(bullet)
 	)

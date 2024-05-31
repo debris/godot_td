@@ -25,9 +25,8 @@ position = Vector2(576, 324)
 [node name="CameraMove" type="Node" parent="Map/Camera2D"]
 script = ExtResource("3_qopqs")
 
-[node name="CameraCenter" type="Node" parent="Map/Camera2D" node_paths=PackedStringArray("level")]
+[node name="CameraCenter" type="Node" parent="Map/Camera2D"]
 script = ExtResource("4_yw2ft")
-level = NodePath("")
 
 [node name="Menu" parent="Map" instance=ExtResource("5_wn763")]
 
