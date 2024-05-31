@@ -23,12 +23,11 @@ resources_spreadsheet_view/context_menu_on_leftclick=false
 config/name="PowerDefense"
 run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
-Pause="*res://pause.gd"
-GameColor="*res://colors.gd"
+Pause="*res://globals/pause.gd"
+GameColor="*res://globals/colors.gd"
 TooltipLayer="*res://tooltip_layer.gd"
 
 [display]

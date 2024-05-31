@@ -102,7 +102,7 @@ func add_tower_at(pos: Vector2i, tower: Node2D):
 	towers_by_index[pos] = tower
 
 func _on_menu_remove():
-	add_child(DeleteTower.new())
+	add_child(TowerDelete.new())
 
 func _on_menu_card_pressed(card: Card):
 	var add_tower = AddTower.new()

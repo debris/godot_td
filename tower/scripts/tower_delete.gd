@@ -1,5 +1,5 @@
 extends Node2D
-class_name DeleteTower
+class_name TowerDelete
 
 var square = Square.new()
 
